@@ -605,6 +605,47 @@ function renderContent(){
   content.innerHTML=html2;
 }
 
+// ── STORY CACHE (72-hour persistence) ──
+var STORY_TTL = 72 * 60 * 60 * 1000; // 72 hours in ms
+
+function loadCachedStories() {
+  try {
+    var raw = localStorage.getItem('dispatch_stories');
+    if (!raw) return [];
+    var cached = JSON.parse(raw);
+    var now = Date.now();
+    // Filter out expired stories and restore Date objects
+    return cached.filter(function(s) {
+      return (now - (s._cached || 0)) < STORY_TTL;
+    }).map(function(s) {
+      s.pubDate = new Date(s.pubDate);
+      return s;
+    });
+  } catch(e) { return []; }
+}
+
+function saveCachedStories(stories) {
+  try {
+    var now = Date.now();
+    // Add cache timestamp to new stories that don't have one
+    var toSave = stories.map(function(s) {
+      if (!s._cached) s._cached = now;
+      return s;
+    });
+    // Prune expired before saving
+    toSave = toSave.filter(function(s) {
+      return (now - s._cached) < STORY_TTL;
+    });
+    localStorage.setItem('dispatch_stories', JSON.stringify(toSave));
+  } catch(e) {
+    // localStorage full — trim oldest stories and retry
+    try {
+      var trimmed = stories.sort(function(a,b){ return (b._cached||0)-(a._cached||0); }).slice(0, Math.floor(stories.length * 0.7));
+      localStorage.setItem('dispatch_stories', JSON.stringify(trimmed));
+    } catch(e2) {}
+  }
+}
+
 // ── LOAD ──
 async function loadAllFeeds(){
   var btn=document.getElementById('refreshBtn');
@@ -612,31 +653,43 @@ async function loadAllFeeds(){
   diagResults={};loadedCount=0;rss2jsonUsed=0;totalFeeds=FEEDS.length;
   updateDiag();
   document.getElementById('content').innerHTML='<div class="loading-state"><div class="loading-spinner"></div>Fetching from verified sources\u2026<br><span id="loadProgress" style="font-size:13px;color:var(--accent);font-family:JetBrains Mono,monospace">0/'+totalFeeds+' feeds \u2014 0%</span></div>';
-  allStories=[];
+
+  // Load cached stories first so page isn't empty
+  allStories = loadCachedStories();
+  if (allStories.length) renderContent();
 
   // Build rss2json queue
   var queue=buildRss2jsonQueue();
   rss2jsonSet={};queue.forEach(function(q){rss2jsonSet[q.feed.id]=true;});
 
-  // Double-pass initial load: first 24 via rss2json, pause, then second 24
+  // Fetch fresh stories
+  var freshStories = [];
   for(var i=0;i<FEEDS.length;i++){
     try{
       var stories=await fetchFeed(FEEDS[i]);
       loadedCount++;updateProgress();
-      if(stories.length){allStories=dedup(allStories.concat(stories));if(i%5===4)renderContent();}
+      if(stories.length){
+        freshStories = freshStories.concat(stories);
+        allStories=dedup(allStories.concat(stories));
+        if(i%5===4)renderContent();
+      }
     }catch(e){loadedCount++;updateProgress();}
     if(i<FEEDS.length-1)await new Promise(function(r){setTimeout(r,400);});
-    // After first 24 rss2json calls, pause to let rate limit reset, then do second pass
     if(rss2jsonUsed>=RSS2JSON_BUDGET&&i===Math.floor(FEEDS.length/2)){
       await new Promise(function(r){setTimeout(r,5000);});
-      // Rebuild queue for remaining feeds
       var queue2=buildRss2jsonQueue();
       queue2.forEach(function(q){rss2jsonSet[q.feed.id]=true;});
       rss2jsonUsed=0;
     }
   }
 
-  allStories=dedup(allStories);renderContent();
+  allStories=dedup(allStories);
+  // Timestamp fresh stories and save everything
+  var now = Date.now();
+  freshStories.forEach(function(s){ s._cached = now; });
+  saveCachedStories(allStories);
+
+  renderContent();
   btn.disabled=false;btn.innerHTML='&#8635; Refresh';
   if(!allStories.length){
     document.getElementById('diagPanel').classList.add('show');

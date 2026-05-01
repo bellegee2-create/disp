@@ -3,16 +3,19 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>The Dispatch — World, U.S., Science, Tech &amp; More</title>
+<title>The Dispatch — World, U.S., Space &amp; AI News</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
+/* <![CDATA[ */
 :root{--ink:#14130f;--paper:#f4ede0;--paper-warm:#ede4d3;--muted:#6b6558;--accent:#b8341b;--accent-deep:#8a2614;--green:#2d7a47;--green-bg:rgba(45,122,71,0.08);--blue:#2a5ea0;--blue-bg:rgba(42,94,160,0.08);--purple:#6b3fa0;--purple-bg:rgba(107,63,160,0.08);--reader-bg:#faf8f3;--reader-max:720px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;overflow-x:hidden;background-image:radial-gradient(rgba(20,19,15,0.03) 1px,transparent 1px);background-size:3px 3px}
 a{color:inherit;text-decoration:none}
+
+/* MASTHEAD */
 .masthead{border-bottom:3px double var(--ink);padding:16px 40px 12px;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:20px;position:relative}
 .masthead::before{content:'';position:absolute;left:40px;right:40px;bottom:-8px;height:1px;background:var(--ink)}
 .masthead-meta{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
@@ -24,47 +27,71 @@ a{color:inherit;text-decoration:none}
 .nameplate .post{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:12px;color:var(--muted);margin-top:6px;display:block}
 .live-dot{display:inline-block;width:7px;height:7px;background:var(--accent);border-radius:50%;margin-right:6px;animation:pulse 2s ease-in-out infinite;vertical-align:middle}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.85)}}
+
+/* NAV */
 nav.section-nav{display:flex;justify-content:center;gap:16px;padding:12px 40px;border-bottom:1px solid var(--ink);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;flex-wrap:wrap}
 nav.section-nav a{position:relative;padding:4px 2px;cursor:pointer;transition:color .2s;white-space:nowrap}
 nav.section-nav a:hover{color:var(--accent)}
 nav.section-nav a.active{color:var(--accent)}
 nav.section-nav a.active::after{content:'';position:absolute;left:0;right:0;bottom:-14px;height:2px;background:var(--accent)}
 nav.section-nav .sep{color:rgba(20,19,15,0.2);padding:0 4px}
+
+/* BADGES */
 .free-badge,.sub-badge,.acad-badge,.lean-badge{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:2px;font-weight:500;white-space:nowrap}
-.free-badge{background:var(--green-bg);color:var(--green);border:1px solid rgba(45,122,71,0.2)}.free-badge::before{content:'\2713'}
-.sub-badge{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(42,94,160,0.2)}.sub-badge::before{content:'\1F511'}
-.acad-badge{background:var(--purple-bg);color:var(--purple);border:1px solid rgba(107,63,160,0.2)}.acad-badge::before{content:'\1F393'}
+.free-badge{background:var(--green-bg);color:var(--green);border:1px solid rgba(45,122,71,0.2)}
+.free-badge::before{content:'\2713'}
+.sub-badge{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(42,94,160,0.2)}
+.sub-badge::before{content:'\1F511'}
+.acad-badge{background:var(--purple-bg);color:var(--purple);border:1px solid rgba(107,63,160,0.2)}
+.acad-badge::before{content:'\1F393'}
 .lean-badge{font-size:7.5px;padding:1px 5px;border-radius:1px;opacity:.7}
 .lean-L{background:rgba(30,100,200,0.08);color:#1e64c8;border:1px solid rgba(30,100,200,0.15)}
 .lean-R{background:rgba(200,40,30,0.08);color:#c8281e;border:1px solid rgba(200,40,30,0.15)}
 .lean-C{background:rgba(120,120,120,0.08);color:#666;border:1px solid rgba(120,120,120,0.15)}
 .lean-Li{background:rgba(200,150,30,0.08);color:#a08020;border:1px solid rgba(200,150,30,0.15)}
+
 main{max-width:1400px;margin:0 auto;padding:32px 40px}
+
+/* HEADLINES TICKER BAR */
 .headlines-bar{background:var(--ink);color:var(--paper);padding:0;margin-bottom:32px;overflow:hidden}
+.headlines-tabs{display:flex;border-bottom:1px solid rgba(244,237,224,0.15)}
+.headlines-tab{flex:1;text-align:center;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent}
+.headlines-tab:hover{background:rgba(244,237,224,0.05)}
+.headlines-tab.active{border-bottom-color:var(--accent);color:var(--accent)}
 .headlines-columns{display:grid;grid-template-columns:1fr 1fr;min-height:0}
 .headlines-column{padding:16px 20px;max-height:320px;overflow-y:auto}
 .headlines-column:first-child{border-right:1px solid rgba(244,237,224,0.1)}
 .headlines-col-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(244,237,224,0.4);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid rgba(244,237,224,0.1)}
 .hl-item{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid rgba(244,237,224,0.06);cursor:pointer;transition:background .15s;align-items:baseline}
-.hl-item:hover{background:rgba(184,52,27,0.08)}.hl-item:last-child{border-bottom:none}
+.hl-item:hover{background:rgba(184,52,27,0.08)}
+.hl-item:last-child{border-bottom:none}
 .hl-time{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(244,237,224,0.35);flex-shrink:0;min-width:35px}
 .hl-text{font-family:'Fraunces',serif;font-size:13px;font-weight:500;line-height:1.3;flex:1}
 .hl-src{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0}
-.headlines-column::-webkit-scrollbar{width:4px}.headlines-column::-webkit-scrollbar-track{background:transparent}.headlines-column::-webkit-scrollbar-thumb{background:rgba(244,237,224,0.2);border-radius:2px}
+.headlines-column::-webkit-scrollbar{width:4px}
+.headlines-column::-webkit-scrollbar-track{background:transparent}
+.headlines-column::-webkit-scrollbar-thumb{background:rgba(244,237,224,0.2);border-radius:2px}
+
+/* PHILOSOPHY BANNER */
 .philosophy{background:var(--ink);color:var(--paper);padding:16px 24px;margin-bottom:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-size:12px}
 .philosophy .icon{font-size:24px;flex-shrink:0}
 .philosophy .text p{color:rgba(244,237,224,0.75);line-height:1.4}
 .philosophy .text p strong{color:var(--paper);font-weight:600}
+
+/* STATUS BAR */
 .status-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;padding-bottom:12px;border-bottom:1px solid rgba(20,19,15,0.2);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;flex-wrap:wrap;gap:10px}
 .status-bar strong{color:var(--ink)}
-.health-bar{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);padding:4px 0;letter-spacing:.05em}
-.health-bar .h-ok{color:var(--green)}.health-bar .h-wait{color:#d4a72c}.health-bar .h-fail{color:var(--accent)}
 .refresh-btn{background:none;border:1px solid var(--ink);color:var(--ink);font-family:inherit;font-size:10px;letter-spacing:.1em;padding:5px 12px;cursor:pointer;transition:all .2s;text-transform:uppercase}
-.refresh-btn:hover{background:var(--ink);color:var(--paper)}.refresh-btn:disabled{opacity:.4;cursor:wait}
+.refresh-btn:hover{background:var(--ink);color:var(--paper)}
+.refresh-btn:disabled{opacity:.4;cursor:wait}
+
+/* SECTION HEADERS */
 .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
 .section-header h2{font-family:'Fraunces',serif;font-weight:900;font-size:28px;letter-spacing:-.01em}
 .section-header h2 .ornament{font-style:italic;font-weight:300;color:var(--accent);font-size:.7em;margin-right:6px}
 .section-header .meta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+
+/* STORY CARDS */
 .lead-section{display:grid;grid-template-columns:1.4fr 1fr;gap:36px;margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid var(--ink)}
 .lead-story{cursor:pointer;display:block}
 .lead-story .lead-image{width:100%;aspect-ratio:16/10;overflow:hidden;margin-bottom:16px;background:var(--paper-warm);border:1px solid var(--ink)}
@@ -77,11 +104,14 @@ main{max-width:1400px;margin:0 auto;padding:32px 40px}
 .lead-story p.dek{font-family:'Fraunces',serif;font-weight:300;font-size:16px;line-height:1.45;color:#2d2a23;margin-bottom:12px;max-width:52ch}
 .byline{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .byline .source{color:var(--ink);font-weight:500;border-bottom:1px solid var(--accent);padding-bottom:1px}
+
 .secondary-leads{display:flex;flex-direction:column;gap:20px;border-left:1px solid var(--ink);padding-left:28px}
-.secondary{cursor:pointer;padding-bottom:18px;border-bottom:1px solid rgba(20,19,15,0.15)}.secondary:last-child{border-bottom:none;padding-bottom:0}
+.secondary{cursor:pointer;padding-bottom:18px;border-bottom:1px solid rgba(20,19,15,0.15)}
+.secondary:last-child{border-bottom:none;padding-bottom:0}
 .secondary h3{font-family:'Fraunces',serif;font-weight:700;font-size:18px;line-height:1.18;margin-bottom:8px;transition:color .2s}
 .secondary:hover h3{color:var(--accent-deep)}
 .secondary p.dek{font-family:'Fraunces',serif;font-size:13px;color:#3a362e;margin-bottom:8px;line-height:1.4}
+
 .story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px 28px;margin-bottom:48px}
 article.story{cursor:pointer;display:flex;flex-direction:column}
 article.story .img-wrap{width:100%;aspect-ratio:4/3;overflow:hidden;margin-bottom:12px;background:var(--paper-warm);border:1px solid var(--ink)}
@@ -92,15 +122,19 @@ article.story h3{font-family:'Fraunces',serif;font-weight:700;font-size:18px;lin
 article.story:hover h3{color:var(--accent-deep)}
 article.story p.dek{font-family:'Fraunces',serif;font-size:13px;color:#3a362e;margin-bottom:10px;line-height:1.4}
 article.story .byline{margin-top:auto}
+
 .ticker-section{display:grid;grid-template-columns:1fr 2.2fr;gap:32px;margin-bottom:48px;padding:24px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
 .ticker-label{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:24px;line-height:1.1}
 .ticker-label .num{font-family:'JetBrains Mono',monospace;font-style:normal;font-size:10px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:6px;font-weight:500}
 .ticker-list{display:flex;flex-direction:column}
 .ticker-item{display:grid;grid-template-columns:75px 1fr auto;gap:16px;padding:10px 0;border-bottom:1px solid rgba(20,19,15,0.12);align-items:baseline;cursor:pointer;transition:background .15s}
-.ticker-item:hover{background:rgba(184,52,27,0.04)}.ticker-item:last-child{border-bottom:none}
+.ticker-item:hover{background:rgba(184,52,27,0.04)}
+.ticker-item:last-child{border-bottom:none}
 .ticker-time{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}
 .ticker-headline{font-family:'Fraunces',serif;font-size:14.5px;font-weight:500;line-height:1.3}
 .ticker-source{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+
+/* READER VIEW OVERLAY */
 .reader-overlay{position:fixed;inset:0;background:rgba(20,19,15,0.6);z-index:1000;display:none;justify-content:center;overflow-y:auto;padding:40px 20px;backdrop-filter:blur(4px)}
 .reader-overlay.open{display:flex}
 .reader-panel{background:var(--reader-bg);width:100%;max-width:var(--reader-max);min-height:50vh;padding:48px 56px;position:relative;box-shadow:0 24px 80px rgba(20,19,15,0.4);margin:auto}
@@ -117,23 +151,22 @@ article.story .byline{margin-top:auto}
 .reader-panel .reader-link:hover{background:var(--accent)}
 .reader-image{width:calc(100% + 112px);margin-left:-56px;margin-bottom:28px;aspect-ratio:16/9;overflow:hidden}
 .reader-image img{width:100%;height:100%;object-fit:cover}
+
+/* LOADING */
 .loading-state{text-align:center;padding:60px 40px;font-family:'Fraunces',serif;font-style:italic;color:var(--muted);font-size:16px}
 .loading-spinner{width:32px;height:32px;border:3px solid var(--paper-warm);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.diag-panel{background:rgba(20,19,15,0.04);border:1px solid rgba(20,19,15,0.12);padding:16px 20px;margin-bottom:24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6;display:none;max-height:500px;overflow-y:auto}
+
+/* DIAGNOSTICS */
+.diag-panel{background:rgba(20,19,15,0.04);border:1px solid rgba(20,19,15,0.12);padding:16px 20px;margin-bottom:24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);line-height:1.6;display:none;max-height:350px;overflow-y:auto}
 .diag-panel.show{display:block}
 .diag-panel h3{font-family:'Fraunces',serif;font-size:15px;color:var(--ink);margin-bottom:10px;font-weight:700}
-.diag-section{margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(20,19,15,0.08)}
-.diag-section-title{font-weight:700;color:var(--ink);margin-bottom:4px;font-size:10px;text-transform:uppercase;letter-spacing:.1em}
 .diag-line{display:flex;gap:7px;align-items:center;padding:1px 0}
 .diag-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .diag-dot.ok{background:var(--green)}.diag-dot.fail{background:var(--accent)}.diag-dot.wait{background:#d4a72c}
 .diag-toggle{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--accent);cursor:pointer;text-transform:uppercase;letter-spacing:.1em;border:none;background:none;padding:4px 0;text-decoration:underline}
-.diag-stats{display:flex;gap:16px;margin-bottom:12px;padding:8px 12px;background:rgba(20,19,15,0.04);flex-wrap:wrap}
-.diag-stat{text-align:center}.diag-stat .num{font-size:18px;font-weight:700;display:block}.diag-stat .lbl{font-size:8px;text-transform:uppercase;letter-spacing:.1em}
-.state-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;padding:8px 0}
-.state-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(20,19,15,0.2);cursor:pointer;transition:all .2s;background:transparent;color:var(--muted)}
-.state-tag:hover,.state-tag.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* SOURCES PANEL */
 .sources{margin-top:56px;padding:36px 32px;background:var(--ink);color:var(--paper)}
 .sources h2{font-family:'Fraunces',serif;font-weight:800;font-size:24px;margin-bottom:6px}
 .sources .sub{font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:rgba(244,237,224,0.6);margin-bottom:24px;font-size:13px;max-width:68ch}
@@ -151,8 +184,10 @@ article.story .byline{margin-top:auto}
 .source-card .links a{color:var(--paper);border-bottom:1px solid var(--accent);padding-bottom:1px;transition:color .2s}
 .source-card .links a:hover{color:var(--accent)}
 .source-card .region-tag{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,237,224,0.3);margin-bottom:2px;display:block}
+
 footer{padding:32px;text-align:center;border-top:1px solid var(--ink);margin-top:56px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.06em;line-height:1.7}
 footer .colophon{font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--ink);margin-bottom:6px;letter-spacing:0}
+
 @media(max-width:900px){
   .masthead{grid-template-columns:1fr;justify-items:center;text-align:center;gap:6px}
   .masthead-meta.left,.masthead-meta.right{text-align:center}
@@ -175,48 +210,55 @@ footer .colophon{font-family:'Fraunces',serif;font-style:italic;font-size:13px;c
   .ticker-source{display:none}
   nav.section-nav{gap:6px;font-size:8.5px;letter-spacing:.06em}
 }
+/* ]]> */
 </style>
 </head>
 <body>
+
 <header class="masthead">
   <div class="masthead-meta left"><span class="live-dot"></span><strong>Live Feeds</strong><br><span id="dateStr"></span></div>
   <div class="nameplate">
     <span class="pre">Verified &amp; Balanced Sources</span>
     <h1>The Dispatch</h1>
-    <span class="post">News, Science, Technology &amp; Research</span>
+    <span class="post">World, U.S., Space &amp; AI &mdash; across the political spectrum</span>
   </div>
   <div class="masthead-meta right"><strong>&#x2713; Free</strong> &middot; <strong>&#x1F511; Subs</strong> &middot; <strong>&#x1F393; Academic</strong><br>Conservative &middot; Center &middot; Liberal</div>
 </header>
+
 <nav class="section-nav" id="navBar">
   <a class="active" data-filter="all">All</a>
   <a data-filter="world">World</a>
   <a data-filter="us">U.S.</a>
   <a data-filter="state">States</a>
   <a data-filter="local">MD/DMV</a>
-  <span class="sep">|</span>
   <a data-filter="space">Space</a>
   <a data-filter="ai">AI</a>
-  <a data-filter="sci">Sci</a>
-  <a data-filter="tech">Tech</a>
   <a data-filter="dig">Dig</a>
-  <a data-filter="lab">Lab</a>
   <span class="sep">|</span>
   <a data-filter="latest">Wire</a>
   <a href="#sources-panel">Sources</a>
 </nav>
+
+<!-- HEADLINES TICKER -->
 <div class="headlines-bar" id="headlinesBar">
   <div class="headlines-columns">
-    <div class="headlines-column" id="hlUSA"><div class="headlines-col-title">&#x1F1FA;&#x1F1F8; U.S. Headlines</div></div>
-    <div class="headlines-column" id="hlIntl"><div class="headlines-col-title">&#x1F30D; International Headlines</div></div>
+    <div class="headlines-column" id="hlUSA">
+      <div class="headlines-col-title">&#x1F1FA;&#x1F1F8; U.S. Headlines</div>
+    </div>
+    <div class="headlines-column" id="hlIntl">
+      <div class="headlines-col-title">&#x1F30D; International Headlines</div>
+    </div>
   </div>
 </div>
+
 <main>
   <div class="philosophy">
     <div class="icon">&#x1F4F0;</div>
     <div class="text">
-      <p><strong style="color:#5dbe79">&#x2713; Free</strong> &middot; <strong style="color:#7ab0e6">&#x1F511; Your Subs</strong> &middot; <strong style="color:#b08ce6">&#x1F393; Academic</strong> &nbsp;|&nbsp; Perspective labels: <strong style="color:#c8281e">R</strong> conservative &middot; <strong style="color:#666">C</strong> center &middot; <strong style="color:#1e64c8">L</strong> liberal &middot; <strong style="color:#a08020">Li</strong> libertarian. Click any headline to open <strong>Reader View</strong>.</p>
+      <p><strong style="color:#5dbe79">&#x2713; Free</strong> &middot; <strong style="color:#7ab0e6">&#x1F511; Your Subs</strong> &middot; <strong style="color:#b08ce6">&#x1F393; Academic</strong> &nbsp;|&nbsp; Perspective labels: <strong style="color:#c8281e">R</strong> conservative &middot; <strong style="color:#666">C</strong> center/non-partisan &middot; <strong style="color:#1e64c8">L</strong> liberal &middot; <strong style="color:#a08020">Li</strong> libertarian. Click any headline to open <strong>Reader View</strong> or read at source.</p>
     </div>
   </div>
+
   <div class="status-bar">
     <div>
       <span id="storyCount"><strong>0</strong> stories</span> from <strong id="sourceCount">0</strong> sources
@@ -224,146 +266,138 @@ footer .colophon{font-family:'Fraunces',serif;font-style:italic;font-size:13px;c
     </div>
     <div style="display:flex;align-items:center;gap:12px">
       <span id="lastUpdated">Loading...</span>
-      <span id="nextRefresh" style="font-size:11px;color:var(--muted)"></span>
       <button class="refresh-btn" onclick="loadAllFeeds()" id="refreshBtn">&#8635; Refresh</button>
     </div>
   </div>
-  <div id="healthBar" class="health-bar"></div>
-  <div class="diag-panel" id="diagPanel"><h3>Feed Health</h3><div id="diagStats"></div><div id="diagLines"></div></div>
+
+  <div class="diag-panel" id="diagPanel"><h3>Feed Status</h3><div id="diagLines"></div></div>
   <div id="content"><div class="loading-state"><div class="loading-spinner"></div>Fetching from verified sources...</div></div>
 </main>
+
+<!-- READER VIEW -->
 <div class="reader-overlay" id="readerOverlay" onclick="if(event.target===this)closeReader()">
   <div class="reader-panel" id="readerPanel"></div>
 </div>
+
 <div class="sources" id="sources-panel">
   <h2>All Sources &mdash; Verified, Labeled &amp; Balanced</h2>
-  <p class="sub">Sources span the political spectrum and are labeled by access type and editorial perspective.</p>
+  <p class="sub">Sources span the political spectrum and are labeled by access type and editorial perspective. All maintain published standards.</p>
   <div class="sources-grid" id="sourcesGrid"></div>
 </div>
+
 <footer>
   <p class="colophon">The Dispatch &mdash; an aggregator, not a publisher</p>
   <p>All articles &copy; their publishers &middot; No content stored or republished &middot; Click to read at source</p>
 </footer>
+
 <script>
+// lean: 'L'=liberal, 'R'=conservative, 'C'=center/nonpartisan, 'Li'=libertarian
 var FEEDS=[
-// ── WORLD (6) ──
-{id:'bbc-w',name:'BBC News',category:'world',access:'free',lean:'C',rss:'https://feeds.bbci.co.uk/news/world/rss.xml',site:'https://www.bbc.com/news',desc:'Public broadcaster.',region:'International'},
-{id:'guardian-w',name:'The Guardian',category:'world',access:'free',lean:'L',rss:'https://www.theguardian.com/world/rss',site:'https://www.theguardian.com/world',desc:'Reader-funded.',region:'International'},
-{id:'aljazeera',name:'Al Jazeera',category:'world',access:'free',lean:'C',rss:'https://www.aljazeera.com/xml/rss/all.xml',site:'https://www.aljazeera.com',desc:'International network.',region:'International'},
-{id:'dw',name:'DW News',category:'world',access:'free',lean:'C',rss:'https://rss.dw.com/rdf/rss-en-world',site:'https://www.dw.com/en/',desc:'German broadcaster.',region:'International'},
-{id:'france24',name:'France 24',category:'world',access:'free',lean:'C',rss:'https://www.france24.com/en/rss',site:'https://www.france24.com/en/',desc:'French international.',region:'International'},
-{id:'abc-au',name:'ABC Australia',category:'world',access:'free',lean:'C',rss:'https://www.abc.net.au/news/feed/2942460/rss.xml',site:'https://www.abc.net.au/news',desc:'Australian public broadcaster.',region:'International'},
-// ── U.S. (14) ──
-{id:'npr',name:'NPR',category:'us',access:'free',lean:'L',rss:'https://feeds.npr.org/1001/rss.xml',site:'https://www.npr.org',desc:'Public radio.',region:'U.S. National'},
-{id:'pbs',name:'PBS NewsHour',category:'us',access:'free',lean:'C',rss:'https://www.pbs.org/newshour/feeds/rss/headlines',site:'https://www.pbs.org/newshour',desc:'Public TV.',region:'U.S. National'},
-{id:'bbc-us',name:'BBC \u2014 US',category:'us',access:'free',lean:'C',rss:'https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml',site:'https://www.bbc.com/news/us-canada',desc:'UK perspective on US.',region:'U.S. National'},
-{id:'guardian-us',name:'Guardian \u2014 US',category:'us',access:'free',lean:'L',rss:'https://www.theguardian.com/us-news/rss',site:'https://www.theguardian.com/us-news',desc:'Reader-funded US.',region:'U.S. National'},
-{id:'nyt',name:'New York Times',category:'us',access:'sub',lean:'L',rss:'https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml',site:'https://www.nytimes.com',desc:'Your subscription.',region:'U.S. National'},
-{id:'wapo',name:'Washington Post',category:'us',access:'sub',lean:'L',rss:'https://feeds.washingtonpost.com/rss/national',site:'https://www.washingtonpost.com',desc:'Your subscription.',region:'U.S. National'},
-{id:'wsj',name:'Wall Street Journal',category:'us',access:'sub',lean:'R',rss:'https://feeds.a.dj.com/rss/RSSWorldNews.xml',site:'https://www.wsj.com',desc:'Your subscription.',region:'U.S. National'},
-{id:'reason',name:'Reason',category:'us',access:'free',lean:'Li',rss:'https://reason.com/feed/',site:'https://reason.com',desc:'Libertarian magazine.',region:'U.S. Opinion'},
-{id:'nationalreview',name:'National Review',category:'us',access:'free',lean:'R',rss:'https://www.nationalreview.com/feed/',site:'https://www.nationalreview.com',desc:'Conservative magazine.',region:'U.S. Opinion'},
-{id:'amcon',name:'The American Conservative',category:'us',access:'free',lean:'R',rss:'https://www.theamericanconservative.com/feed/',site:'https://www.theamericanconservative.com',desc:'Paleoconservative.',region:'U.S. Opinion'},
-{id:'thedispatch',name:'The Dispatch',category:'us',access:'free',lean:'R',rss:'https://thedispatch.com/feed/',site:'https://thedispatch.com',desc:'Center-right fact-based.',region:'U.S. Opinion'},
-{id:'theintercept',name:'The Intercept',category:'us',access:'free',lean:'L',rss:'https://theintercept.com/feed/?rss',site:'https://theintercept.com',desc:'Investigative journalism.',region:'U.S. Opinion'},
-{id:'motherjones',name:'Mother Jones',category:'us',access:'free',lean:'L',rss:'https://www.motherjones.com/feed/',site:'https://www.motherjones.com',desc:'Nonprofit investigative.',region:'U.S. Opinion'},
-{id:'democracynow',name:'Democracy Now!',category:'us',access:'free',lean:'L',rss:'https://www.democracynow.org/democracynow.rss',site:'https://www.democracynow.org',desc:'Independent daily news.',region:'U.S. Opinion'},
-// ── STATE (9) ──
-{id:'texastribune',name:'Texas Tribune',category:'state',access:'free',lean:'C',rss:'https://www.texastribune.org/feeds/articles.rss',site:'https://www.texastribune.org',desc:'Nonprofit Texas.',region:'Texas'},
-{id:'calmatters',name:'CalMatters',category:'state',access:'free',lean:'C',rss:'https://calmatters.org/feed/',site:'https://calmatters.org',desc:'Nonprofit California.',region:'California'},
-{id:'minnpost',name:'MinnPost',category:'state',access:'free',lean:'C',rss:'https://www.minnpost.com/feed/',site:'https://www.minnpost.com',desc:'Nonprofit Minnesota.',region:'Minnesota'},
-{id:'bridge',name:'Bridge Michigan',category:'state',access:'free',lean:'C',rss:'https://www.bridgemi.com/feed',site:'https://www.bridgemi.com',desc:'Nonprofit Michigan.',region:'Michigan'},
-{id:'flphoenix',name:'Florida Phoenix',category:'state',access:'free',lean:'C',rss:'https://floridaphoenix.com/feed/',site:'https://floridaphoenix.com',desc:'Nonprofit Florida.',region:'Florida'},
-{id:'penncapital',name:'PA Capital-Star',category:'state',access:'free',lean:'C',rss:'https://www.penncapital-star.com/feed/',site:'https://www.penncapital-star.com',desc:'Nonprofit Pennsylvania.',region:'Pennsylvania'},
-{id:'azmirror',name:'Arizona Mirror',category:'state',access:'free',lean:'C',rss:'https://azmirror.com/feed/',site:'https://azmirror.com',desc:'Nonprofit Arizona.',region:'Arizona'},
-{id:'garecorder',name:'Georgia Recorder',category:'state',access:'free',lean:'C',rss:'https://georgiarecorder.com/feed/',site:'https://georgiarecorder.com',desc:'Nonprofit Georgia.',region:'Georgia'},
-{id:'ohiocapital',name:'Ohio Capital Journal',category:'state',access:'free',lean:'C',rss:'https://ohiocapitaljournal.com/feed/',site:'https://ohiocapitaljournal.com',desc:'Nonprofit Ohio.',region:'Ohio'},
-// ── LOCAL (6) ──
-{id:'marylandmatters',name:'Maryland Matters',category:'local',access:'free',lean:'C',rss:'https://www.marylandmatters.org/feed/',site:'https://www.marylandmatters.org',desc:'Nonprofit MD politics.',region:'MD'},
-{id:'baltbanner',name:'Baltimore Banner',category:'local',access:'free',lean:'C',rss:'https://www.thebaltimorebanner.com/rss/',site:'https://www.thebaltimorebanner.com',desc:'Nonprofit Baltimore.',region:'MD'},
-{id:'dcist',name:'DCist',category:'local',access:'free',lean:'C',rss:'https://dcist.com/feed/',site:'https://dcist.com',desc:'WAMU/NPR DC-area.',region:'DC'},
-{id:'wapo-local',name:'WaPo \u2014 Local',category:'local',access:'sub',lean:'L',rss:'https://feeds.washingtonpost.com/rss/local',site:'https://www.washingtonpost.com/local/',desc:'Your sub \u2014 DMV.',region:'DMV'},
-{id:'wtop',name:'WTOP',category:'local',access:'free',lean:'C',rss:'https://wtop.com/feed/',site:'https://wtop.com',desc:'DC-area all-news radio.',region:'DMV'},
-{id:'balt-sun',name:'Baltimore Sun',category:'local',access:'sub',lean:'C',rss:'https://www.baltimoresun.com/arcio/rss/category/maryland/',site:'https://www.baltimoresun.com',desc:'Maryland news.',region:'MD'},
-// ── SPACE (6) ──
-{id:'nasa',name:'NASA',category:'space',access:'acad',lean:'C',rss:'https://www.nasa.gov/feed/',site:'https://www.nasa.gov',desc:'Official NASA releases.',region:'NASA'},
-{id:'spacedotcom',name:'Space.com',category:'space',access:'free',lean:'C',rss:'https://www.space.com/feeds/all',site:'https://www.space.com',desc:'Space exploration news.',region:'Space'},
-{id:'spacenews',name:'SpaceNews',category:'space',access:'free',lean:'C',rss:'https://spacenews.com/feed/',site:'https://spacenews.com',desc:'Space industry & policy.',region:'Space'},
-{id:'phys-space',name:'Phys.org \u2014 Space',category:'space',access:'acad',lean:'C',rss:'https://phys.org/rss-feed/space-news/',site:'https://phys.org/space-news/',desc:'Academic aggregator.',region:'Academic'},
-{id:'mit-space',name:'MIT \u2014 Space',category:'space',access:'acad',lean:'C',rss:'https://news.mit.edu/rss/topic/space-astronomy-and-planetary-science',site:'https://news.mit.edu/topic/space-astronomy-and-planetary-science',desc:'MIT research news.',region:'MIT'},
-{id:'esa',name:'ESA',category:'space',access:'acad',lean:'C',rss:'https://www.esa.int/rssfeed/Our_Activities/Space_Science',site:'https://www.esa.int',desc:'European Space Agency.',region:'ESA'},
-// ── AI (9) ──
-{id:'mit-ai',name:'MIT \u2014 AI',category:'ai',access:'acad',lean:'C',rss:'https://news.mit.edu/rss/topic/artificial-intelligence2',site:'https://news.mit.edu/topic/artificial-intelligence2',desc:'MIT AI research.',region:'MIT'},
-{id:'deepmind',name:'Google DeepMind',category:'ai',access:'acad',lean:'C',rss:'https://deepmind.google/blog/rss.xml',site:'https://deepmind.google/blog/',desc:'DeepMind research.',region:'DeepMind'},
-{id:'openai',name:'OpenAI',category:'ai',access:'free',lean:'C',rss:'https://openai.com/blog/rss/',site:'https://openai.com/blog',desc:'OpenAI blog.',region:'OpenAI'},
-{id:'phys-ai',name:'Phys.org \u2014 AI',category:'ai',access:'acad',lean:'C',rss:'https://phys.org/rss-feed/machine-learning-ai/',site:'https://phys.org/machine-learning-ai/',desc:'Academic AI aggregator.',region:'Academic'},
-{id:'stanfordhai',name:'Stanford HAI',category:'ai',access:'acad',lean:'C',rss:'https://hai.stanford.edu/news/rss.xml',site:'https://hai.stanford.edu/news',desc:'Stanford Human-Centered AI.',region:'Stanford'},
-{id:'theregister-ai',name:'The Register \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://www.theregister.com/software/ai_ml/headlines.atom',site:'https://www.theregister.com/software/ai_ml/',desc:'Tech press AI coverage.',region:'Tech'},
-{id:'techcrunch-ai',name:'TechCrunch \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://techcrunch.com/category/artificial-intelligence/feed/',site:'https://techcrunch.com/category/artificial-intelligence/',desc:'Tech press AI.',region:'Tech'},
-{id:'venturebeat-ai',name:'VentureBeat \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://venturebeat.com/category/ai/feed/',site:'https://venturebeat.com/category/ai/',desc:'AI industry news.',region:'Tech'},
-{id:'wired-ai',name:'Wired \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://www.wired.com/feed/tag/ai/latest/rss',site:'https://www.wired.com',desc:'Tech reporting.',region:'Tech'},
-// ── SCI (8) ──
-{id:'sd-mindbrain',name:'ScienceDaily \u2014 Mind & Brain',category:'sci',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/mind_brain.xml',site:'https://www.sciencedaily.com/news/mind_brain/',desc:'Neuroscience & psychology.',region:'Academic'},
-{id:'sd-alzheimers',name:'ScienceDaily \u2014 Alzheimer\'s',category:'sci',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/health_medicine/alzheimer\'s.xml',site:'https://www.sciencedaily.com/news/health_medicine/alzheimer\'s/',desc:'Alzheimer\'s research.',region:'Academic'},
-{id:'sd-genes',name:'ScienceDaily \u2014 Genes',category:'sci',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/health_medicine/genes.xml',site:'https://www.sciencedaily.com/news/health_medicine/genes/',desc:'Genetics research.',region:'Academic'},
-{id:'sd-stemcells',name:'ScienceDaily \u2014 Stem Cells',category:'sci',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/health_medicine/stem_cells.xml',site:'https://www.sciencedaily.com/news/health_medicine/stem_cells/',desc:'Stem cell research.',region:'Academic'},
-{id:'sd-immune',name:'ScienceDaily \u2014 Immune System',category:'sci',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/health_medicine/immune_system.xml',site:'https://www.sciencedaily.com/news/health_medicine/immune_system/',desc:'Immunology research.',region:'Academic'},
-{id:'neuroscinews',name:'Neuroscience News',category:'sci',access:'free',lean:'C',rss:'https://neurosciencenews.com/feed/',site:'https://neurosciencenews.com',desc:'Independent neuroscience.',region:'Neuroscience'},
-{id:'phys-neuro',name:'Phys.org \u2014 Neuroscience',category:'sci',access:'free',lean:'C',rss:'https://phys.org/rss-feed/neuroscience/',site:'https://phys.org/neuroscience/',desc:'Academic neuroscience.',region:'Academic'},
-{id:'phys-bio',name:'Phys.org \u2014 Biology',category:'sci',access:'free',lean:'C',rss:'https://phys.org/rss-feed/biology-news/',site:'https://phys.org/biology-news/',desc:'Academic biology.',region:'Academic'},
-// ── TECH (7) ──
-{id:'sd-tech',name:'ScienceDaily \u2014 Technology',category:'tech',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/top/technology.xml',site:'https://www.sciencedaily.com/news/top/technology/',desc:'Top technology news.',region:'Academic'},
-{id:'sd-matter',name:'ScienceDaily \u2014 Matter & Energy',category:'tech',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/matter_energy.xml',site:'https://www.sciencedaily.com/news/matter_energy/',desc:'Physics, nanotech.',region:'Academic'},
-{id:'arstechnica',name:'Ars Technica',category:'tech',access:'free',lean:'C',rss:'https://feeds.arstechnica.com/arstechnica/index',site:'https://arstechnica.com',desc:'Deep tech reporting.',region:'Tech'},
-{id:'ieee',name:'IEEE Spectrum',category:'tech',access:'free',lean:'C',rss:'https://spectrum.ieee.org/feeds/feed.rss',site:'https://spectrum.ieee.org',desc:'Engineering & tech journal.',region:'Academic'},
-{id:'phys-tech',name:'Phys.org \u2014 Technology',category:'tech',access:'free',lean:'C',rss:'https://phys.org/rss-feed/technology-news/',site:'https://phys.org/technology-news/',desc:'Academic tech news.',region:'Academic'},
-{id:'hackaday',name:'Hackaday',category:'tech',access:'free',lean:'C',rss:'https://hackaday.com/feed/',site:'https://hackaday.com',desc:'Hardware & maker.',region:'Maker'},
-{id:'theregister',name:'The Register',category:'tech',access:'free',lean:'C',rss:'https://www.theregister.com/headlines.atom',site:'https://www.theregister.com',desc:'Tech press.',region:'Tech'},
-// ── DIG (10) ──
-{id:'sd-archaeology',name:'ScienceDaily \u2014 Archaeology',category:'dig',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/fossils_ruins/archaeology.xml',site:'https://www.sciencedaily.com/news/fossils_ruins/archaeology/',desc:'Archaeology news.',region:'Academic'},
-{id:'sd-fossils',name:'ScienceDaily \u2014 Fossils',category:'dig',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/fossils_ruins.xml',site:'https://www.sciencedaily.com/news/fossils_ruins/',desc:'Fossils & ruins.',region:'Academic'},
-{id:'sd-earlyhumans',name:'ScienceDaily \u2014 Early Humans',category:'dig',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/fossils_ruins/early_humans.xml',site:'https://www.sciencedaily.com/news/fossils_ruins/early_humans/',desc:'Human origins.',region:'Academic'},
-{id:'sd-dinosaurs',name:'ScienceDaily \u2014 Dinosaurs',category:'dig',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/fossils_ruins/dinosaurs.xml',site:'https://www.sciencedaily.com/news/fossils_ruins/dinosaurs/',desc:'Dinosaur discoveries.',region:'Academic'},
-{id:'sd-paleontology',name:'ScienceDaily \u2014 Paleontology',category:'dig',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/fossils_ruins/paleontology.xml',site:'https://www.sciencedaily.com/news/fossils_ruins/paleontology/',desc:'Paleontology research.',region:'Academic'},
-{id:'phys-archeo',name:'Phys.org \u2014 Archaeology',category:'dig',access:'free',lean:'C',rss:'https://phys.org/rss-feed/archaeology-fossils/',site:'https://phys.org/science-news/archaeology-fossils/',desc:'Academic archaeology.',region:'Academic'},
-{id:'guardian-arch',name:'Guardian \u2014 Archaeology',category:'dig',access:'free',lean:'L',rss:'https://www.theguardian.com/science/archaeology/rss',site:'https://www.theguardian.com/science/archaeology',desc:'Guardian archaeology.',region:'International'},
-{id:'archmag',name:'Archaeology Magazine',category:'dig',access:'free',lean:'C',rss:'https://www.archaeology.org/feed',site:'https://www.archaeology.org',desc:'AIA flagship.',region:'AIA'},
-{id:'heritagedaily',name:'HeritageDaily',category:'dig',access:'free',lean:'C',rss:'https://www.heritagedaily.com/feed',site:'https://www.heritagedaily.com',desc:'Archaeology & heritage.',region:'International'},
-{id:'ancientorigins',name:'Ancient Origins',category:'dig',access:'free',lean:'C',rss:'https://www.ancient-origins.net/feed',site:'https://www.ancient-origins.net',desc:'Ancient history.',region:'International'},
-// ── LAB (14) ──
-{id:'mit-general',name:'MIT News',category:'lab',access:'acad',lean:'C',rss:'https://news.mit.edu/rss/feed',site:'https://news.mit.edu',desc:'MIT general research.',region:'MIT'},
-{id:'mit-eng',name:'MIT \u2014 Engineering',category:'lab',access:'acad',lean:'C',rss:'https://news.mit.edu/rss/topic/engineering',site:'https://news.mit.edu/topic/engineering',desc:'MIT engineering.',region:'MIT'},
-{id:'mit-neuro',name:'MIT \u2014 Neuroscience',category:'lab',access:'acad',lean:'C',rss:'https://news.mit.edu/rss/topic/neuroscience',site:'https://news.mit.edu/topic/neuroscience',desc:'MIT neuroscience.',region:'MIT'},
-{id:'cmu-ml',name:'CMU ML Blog',category:'lab',access:'acad',lean:'C',rss:'https://blog.ml.cmu.edu/feed/',site:'https://blog.ml.cmu.edu',desc:'Carnegie Mellon ML.',region:'CMU'},
-{id:'stanford-sail',name:'Stanford SAIL',category:'lab',access:'acad',lean:'C',rss:'https://ai.stanford.edu/blog/feed.xml',site:'https://ai.stanford.edu/blog/',desc:'Stanford AI Lab.',region:'Stanford'},
-{id:'caltech',name:'Caltech',category:'lab',access:'acad',lean:'C',rss:'https://www.caltech.edu/feeds/latest-news',site:'https://www.caltech.edu',desc:'Caltech research.',region:'Caltech'},
-{id:'gatech',name:'Georgia Tech',category:'lab',access:'acad',lean:'C',rss:'https://news.gatech.edu/feed',site:'https://news.gatech.edu',desc:'Georgia Tech research.',region:'Georgia Tech'},
-{id:'berkeley',name:'UC Berkeley',category:'lab',access:'acad',lean:'C',rss:'https://news.berkeley.edu/feed',site:'https://news.berkeley.edu',desc:'Berkeley research.',region:'UC Berkeley'},
-{id:'oxford',name:'Oxford',category:'lab',access:'acad',lean:'C',rss:'https://www.ox.ac.uk/news/feed',site:'https://www.ox.ac.uk/news',desc:'Oxford research.',region:'Oxford'},
-{id:'cambridge',name:'Cambridge',category:'lab',access:'acad',lean:'C',rss:'https://www.cam.ac.uk/news/feed',site:'https://www.cam.ac.uk/news',desc:'Cambridge research.',region:'Cambridge'},
-{id:'ethz',name:'ETH Zurich',category:'lab',access:'acad',lean:'C',rss:'https://ethz.ch/en/news-and-events/eth-news.rss.xml',site:'https://ethz.ch/en/news-and-events.html',desc:'Swiss engineering.',region:'ETH Zurich'},
-{id:'maxplanck',name:'Max Planck',category:'lab',access:'acad',lean:'C',rss:'https://www.mpg.de/en/feed/rss',site:'https://www.mpg.de/en',desc:'German research institutes.',region:'Max Planck'},
-{id:'cern',name:'CERN',category:'lab',access:'acad',lean:'C',rss:'https://home.cern/api/news/feed.rss',site:'https://home.cern',desc:'Particle physics.',region:'CERN'},
-{id:'imperial',name:'Imperial College',category:'lab',access:'acad',lean:'C',rss:'https://www.imperial.ac.uk/news/feed',site:'https://www.imperial.ac.uk/news',desc:'Imperial research.',region:'Imperial'}
+// ── AI ──
+{id:'mit-ai',name:'MIT \u2014 AI',category:'ai',access:'acad',lean:'C',rss:'https://news.mit.edu/rss/topic/artificial-intelligence2',site:'https://news.mit.edu/topic/artificial-intelligence2',standards:'https://news.mit.edu/about',desc:'MIT AI research.',region:'MIT'},
+{id:'deepmind',name:'Google DeepMind',category:'ai',access:'acad',lean:'C',rss:'https://deepmind.google/blog/rss.xml',site:'https://deepmind.google/blog/',standards:'https://deepmind.google/about/',desc:'DeepMind research.',region:'DeepMind'},
+{id:'openai',name:'OpenAI',category:'ai',access:'free',lean:'C',rss:'https://openai.com/blog/rss/',site:'https://openai.com/blog',standards:'https://openai.com/charter/',desc:'OpenAI blog.',region:'OpenAI'},
+{id:'phys-ai',name:'Phys.org \u2014 AI',category:'ai',access:'acad',lean:'C',rss:'https://phys.org/rss-feed/machine-learning-ai/',site:'https://phys.org/machine-learning-ai/',standards:'https://phys.org/help/about-us/',desc:'Academic AI aggregator.',region:'Academic'},
+{id:'stanfordhai',name:'Stanford HAI',category:'ai',access:'acad',lean:'C',rss:'https://hai.stanford.edu/news/rss.xml',site:'https://hai.stanford.edu/news',standards:'https://hai.stanford.edu/about',desc:'Stanford Human-Centered AI.',region:'Stanford'},
+{id:'theregister-ai',name:'The Register \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://www.theregister.com/software/ai_ml/headlines.atom',site:'https://www.theregister.com/software/ai_ml/',standards:'https://www.theregister.com/about/',desc:'Tech press AI coverage.',region:'Tech'},
+{id:'techcrunch-ai',name:'TechCrunch \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://techcrunch.com/category/artificial-intelligence/feed/',site:'https://techcrunch.com/category/artificial-intelligence/',standards:'https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html',desc:'Tech press AI coverage.',region:'Tech'},
+{id:'venturebeat-ai',name:'VentureBeat \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://venturebeat.com/category/ai/feed/',site:'https://venturebeat.com/category/ai/',standards:'https://venturebeat.com/about/',desc:'AI industry news.',region:'Tech'},
+{id:'wired-ai',name:'Wired \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://www.wired.com/feed/tag/ai/latest/rss',site:'https://www.wired.com',standards:'https://www.wired.com/about/press/',desc:'Tech reporting.',region:'Tech'},
+
+// ── ARCHAEOLOGY & PALEONTOLOGY (Dig) ──
+{id:'sd-archaeology',name:'ScienceDaily \u2014 Archaeology',category:'dig',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/fossils_ruins/archaeology.xml',site:'https://www.sciencedaily.com/news/fossils_ruins/archaeology/',standards:'https://www.sciencedaily.com/terms.htm',desc:'Archaeology news aggregator.',region:'Academic'},
+{id:'sd-fossils',name:'ScienceDaily \u2014 Fossils',category:'dig',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/fossils_ruins.xml',site:'https://www.sciencedaily.com/news/fossils_ruins/',standards:'https://www.sciencedaily.com/terms.htm',desc:'Fossils & ruins news.',region:'Academic'},
+{id:'sd-earlyhumans',name:'ScienceDaily \u2014 Early Humans',category:'dig',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/fossils_ruins/early_humans.xml',site:'https://www.sciencedaily.com/news/fossils_ruins/early_humans/',standards:'https://www.sciencedaily.com/terms.htm',desc:'Human origins research.',region:'Academic'},
+{id:'sd-dinosaurs',name:'ScienceDaily \u2014 Dinosaurs',category:'dig',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/fossils_ruins/dinosaurs.xml',site:'https://www.sciencedaily.com/news/fossils_ruins/dinosaurs/',standards:'https://www.sciencedaily.com/terms.htm',desc:'Dinosaur discoveries.',region:'Academic'},
+{id:'sd-paleontology',name:'ScienceDaily \u2014 Paleontology',category:'dig',access:'free',lean:'C',rss:'https://www.sciencedaily.com/rss/fossils_ruins/paleontology.xml',site:'https://www.sciencedaily.com/news/fossils_ruins/paleontology/',standards:'https://www.sciencedaily.com/terms.htm',desc:'Paleontology research news.',region:'Academic'},
+{id:'phys-archeo',name:'Phys.org \u2014 Archaeology',category:'dig',access:'free',lean:'C',rss:'https://phys.org/rss-feed/archaeology-fossils/',site:'https://phys.org/science-news/archaeology-fossils/',standards:'https://phys.org/help/about-us/',desc:'Academic archaeology news.',region:'Academic'},
+{id:'guardian-arch',name:'Guardian \u2014 Archaeology',category:'dig',access:'free',lean:'L',rss:'https://www.theguardian.com/science/archaeology/rss',site:'https://www.theguardian.com/science/archaeology',standards:'https://www.theguardian.com/info/2015/aug/05/the-guardians-editorial-code',desc:'Guardian archaeology section.',region:'International'},
+{id:'archmag',name:'Archaeology Magazine',category:'dig',access:'free',lean:'C',rss:'https://www.archaeology.org/feed',site:'https://www.archaeology.org',standards:'https://www.archaeology.org/about',desc:'AIA flagship publication.',region:'AIA'},
+{id:'heritagedaily',name:'HeritageDaily',category:'dig',access:'free',lean:'C',rss:'https://www.heritagedaily.com/feed',site:'https://www.heritagedaily.com',standards:'https://www.heritagedaily.com/about',desc:'Archaeology & heritage news.',region:'International'},
+{id:'ancientorigins',name:'Ancient Origins',category:'dig',access:'free',lean:'C',rss:'https://www.ancient-origins.net/feed',site:'https://www.ancient-origins.net',standards:'https://www.ancient-origins.net/about',desc:'Ancient history & archaeology.',region:'International'},
+
+// ── STATE ──
+{id:'texastribune',name:'Texas Tribune',category:'state',access:'free',lean:'C',rss:'https://www.texastribune.org/feeds/articles.rss',site:'https://www.texastribune.org',standards:'https://www.texastribune.org/about/ethics/',desc:'Nonprofit Texas.',region:'Texas'},
+{id:'calmatters',name:'CalMatters',category:'state',access:'free',lean:'C',rss:'https://calmatters.org/feed/',site:'https://calmatters.org',standards:'https://calmatters.org/about/ethics-policy/',desc:'Nonprofit California.',region:'California'},
+{id:'minnpost',name:'MinnPost',category:'state',access:'free',lean:'C',rss:'https://www.minnpost.com/feed/',site:'https://www.minnpost.com',standards:'https://www.minnpost.com/about/mission-and-principles/',desc:'Nonprofit Minnesota.',region:'Minnesota'},
+{id:'bridge',name:'Bridge Michigan',category:'state',access:'free',lean:'C',rss:'https://www.bridgemi.com/feed',site:'https://www.bridgemi.com',standards:'https://www.bridgemi.com/about',desc:'Nonprofit Michigan.',region:'Michigan'},
+{id:'flphoenix',name:'Florida Phoenix',category:'state',access:'free',lean:'C',rss:'https://floridaphoenix.com/feed/',site:'https://floridaphoenix.com',standards:'https://floridaphoenix.com/about/',desc:'Nonprofit Florida.',region:'Florida'},
+{id:'penncapital',name:'PA Capital-Star',category:'state',access:'free',lean:'C',rss:'https://www.penncapital-star.com/feed/',site:'https://www.penncapital-star.com',standards:'https://www.penncapital-star.com/about/',desc:'Nonprofit Pennsylvania.',region:'Pennsylvania'},
+{id:'azmirror',name:'Arizona Mirror',category:'state',access:'free',lean:'C',rss:'https://azmirror.com/feed/',site:'https://azmirror.com',standards:'https://azmirror.com/about/',desc:'Nonprofit Arizona.',region:'Arizona'},
+{id:'garecorder',name:'Georgia Recorder',category:'state',access:'free',lean:'C',rss:'https://georgiarecorder.com/feed/',site:'https://georgiarecorder.com',standards:'https://georgiarecorder.com/about/',desc:'Nonprofit Georgia.',region:'Georgia'},
+{id:'ohiocapital',name:'Ohio Capital Journal',category:'state',access:'free',lean:'C',rss:'https://ohiocapitaljournal.com/feed/',site:'https://ohiocapitaljournal.com',standards:'https://ohiocapitaljournal.com/about/',desc:'Nonprofit Ohio.',region:'Ohio'},
+
+// ── SPACE ──
+{id:'nasa',name:'NASA',category:'space',access:'acad',lean:'C',rss:'https://www.nasa.gov/feed/',site:'https://www.nasa.gov',standards:'https://www.nasa.gov/nasa-brand-center/communications-policies/',desc:'Official NASA releases.',region:'NASA'},
+{id:'spacedotcom',name:'Space.com',category:'space',access:'free',lean:'C',rss:'https://www.space.com/feeds/all',site:'https://www.space.com',standards:'https://www.space.com/about-us',desc:'Space exploration news.',region:'Space'},
+{id:'spacenews',name:'SpaceNews',category:'space',access:'free',lean:'C',rss:'https://spacenews.com/feed/',site:'https://spacenews.com',standards:'https://spacenews.com/about-us/',desc:'Space industry & policy.',region:'Space'},
+{id:'phys-space',name:'Phys.org \u2014 Space',category:'space',access:'acad',lean:'C',rss:'https://phys.org/rss-feed/space-news/',site:'https://phys.org/space-news/',standards:'https://phys.org/help/about-us/',desc:'Academic aggregator.',region:'Academic'},
+{id:'mit-space',name:'MIT \u2014 Space',category:'space',access:'acad',lean:'C',rss:'https://news.mit.edu/rss/topic/space-astronomy-and-planetary-science',site:'https://news.mit.edu/topic/space-astronomy-and-planetary-science',standards:'https://news.mit.edu/about',desc:'MIT research news.',region:'MIT'},
+{id:'esa',name:'ESA',category:'space',access:'acad',lean:'C',rss:'https://www.esa.int/rssfeed/Our_Activities/Space_Science',site:'https://www.esa.int',standards:'https://www.esa.int/About_Us/Corporate_news',desc:'European Space Agency.',region:'ESA'},
+
+// ── WORLD ──
+{id:'bbc-w',name:'BBC News',category:'world',access:'free',lean:'C',rss:'https://feeds.bbci.co.uk/news/world/rss.xml',site:'https://www.bbc.com/news',standards:'https://www.bbc.com/editorialguidelines',desc:'Public broadcaster. Free worldwide.',region:'International'},
+{id:'guardian-w',name:'The Guardian',category:'world',access:'free',lean:'L',rss:'https://www.theguardian.com/world/rss',site:'https://www.theguardian.com/world',standards:'https://www.theguardian.com/info/2015/aug/05/the-guardians-editorial-code',desc:'Reader-funded. Free.',region:'International'},
+{id:'aljazeera',name:'Al Jazeera',category:'world',access:'free',lean:'C',rss:'https://www.aljazeera.com/xml/rss/all.xml',site:'https://www.aljazeera.com',standards:'https://www.aljazeera.com/about-us',desc:'International network. Free.',region:'International'},
+{id:'dw',name:'DW News',category:'world',access:'free',lean:'C',rss:'https://rss.dw.com/rdf/rss-en-world',site:'https://www.dw.com/en/',standards:'https://www.dw.com/en/dws-editorial-principles/a-18258461',desc:'German broadcaster.',region:'International'},
+{id:'france24',name:'France 24',category:'world',access:'free',lean:'C',rss:'https://www.france24.com/en/rss',site:'https://www.france24.com/en/',standards:'https://www.france24.com/en/editorial-ethics-charter',desc:'French international.',region:'International'},
+{id:'abc-au',name:'ABC Australia',category:'world',access:'free',lean:'C',rss:'https://www.abc.net.au/news/feed/2942460/rss.xml',site:'https://www.abc.net.au/news',standards:'https://edpols.abc.net.au/guidance/editorial-standards/',desc:'Australian public broadcaster.',region:'International'},
+
+// ── U.S. ──
+{id:'npr',name:'NPR',category:'us',access:'free',lean:'L',rss:'https://feeds.npr.org/1001/rss.xml',site:'https://www.npr.org',standards:'https://www.npr.org/ethics/',desc:'Public radio. Free.',region:'U.S. National'},
+{id:'pbs',name:'PBS NewsHour',category:'us',access:'free',lean:'C',rss:'https://www.pbs.org/newshour/feeds/rss/headlines',site:'https://www.pbs.org/newshour',standards:'https://www.pbs.org/standards/',desc:'Public TV. Strict standards.',region:'U.S. National'},
+{id:'bbc-us',name:'BBC \u2014 US',category:'us',access:'free',lean:'C',rss:'https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml',site:'https://www.bbc.com/news/us-canada',standards:'https://www.bbc.com/editorialguidelines',desc:'UK perspective on US.',region:'U.S. National'},
+{id:'guardian-us',name:'Guardian \u2014 US',category:'us',access:'free',lean:'L',rss:'https://www.theguardian.com/us-news/rss',site:'https://www.theguardian.com/us-news',standards:'https://www.theguardian.com/info/2015/aug/05/the-guardians-editorial-code',desc:'Reader-funded US coverage.',region:'U.S. National'},
+{id:'nyt',name:'New York Times',category:'us',access:'sub',lean:'L',rss:'https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml',site:'https://www.nytimes.com',standards:'https://www.nytimes.com/editorial-standards/guidelines-on-integrity.html',desc:'Your subscription.',region:'U.S. National'},
+{id:'wapo',name:'Washington Post',category:'us',access:'sub',lean:'L',rss:'https://feeds.washingtonpost.com/rss/national',site:'https://www.washingtonpost.com',standards:'https://www.washingtonpost.com/policies-and-standards/',desc:'Your subscription.',region:'U.S. National'},
+{id:'wsj',name:'Wall Street Journal',category:'us',access:'sub',lean:'R',rss:'https://feeds.a.dj.com/rss/RSSWorldNews.xml',site:'https://www.wsj.com',standards:'https://www.wsj.com/policy/ethics-code',desc:'Your subscription.',region:'U.S. National'},
+{id:'reason',name:'Reason',category:'us',access:'free',lean:'Li',rss:'https://reason.com/feed/',site:'https://reason.com',standards:'https://reason.com/about/',desc:'Libertarian magazine. Free.',region:'U.S. Opinion'},
+{id:'nationalreview',name:'National Review',category:'us',access:'free',lean:'R',rss:'https://www.nationalreview.com/feed/',site:'https://www.nationalreview.com',standards:'https://www.nationalreview.com/about/',desc:'Conservative magazine. Free online.',region:'U.S. Opinion'},
+{id:'amcon',name:'The American Conservative',category:'us',access:'free',lean:'R',rss:'https://www.theamericanconservative.com/feed/',site:'https://www.theamericanconservative.com',standards:'https://www.theamericanconservative.com/about/',desc:'Paleoconservative/realist. Free.',region:'U.S. Opinion'},
+{id:'thedispatch',name:'The Dispatch',category:'us',access:'free',lean:'R',rss:'https://thedispatch.com/feed/',site:'https://thedispatch.com',standards:'https://thedispatch.com/about/',desc:'Center-right fact-based reporting.',region:'U.S. Opinion'},
+{id:'theintercept',name:'The Intercept',category:'us',access:'free',lean:'L',rss:'https://theintercept.com/feed/?rss',site:'https://theintercept.com',standards:'https://theintercept.com/about/',desc:'Investigative journalism. Free.',region:'U.S. Opinion'},
+{id:'motherjones',name:'Mother Jones',category:'us',access:'free',lean:'L',rss:'https://www.motherjones.com/feed/',site:'https://www.motherjones.com',standards:'https://www.motherjones.com/about/',desc:'Nonprofit investigative. Free.',region:'U.S. Opinion'},
+{id:'democracynow',name:'Democracy Now!',category:'us',access:'free',lean:'L',rss:'https://www.democracynow.org/democracynow.rss',site:'https://www.democracynow.org',standards:'https://www.democracynow.org/about',desc:'Independent daily news. Free.',region:'U.S. Opinion'},
+
+// ── LOCAL MD/DMV ──
+{id:'marylandmatters',name:'Maryland Matters',category:'local',access:'free',lean:'C',rss:'https://www.marylandmatters.org/feed/',site:'https://www.marylandmatters.org',standards:'https://www.marylandmatters.org/about/',desc:'Nonprofit MD politics.',region:'MD'},
+{id:'baltbanner',name:'Baltimore Banner',category:'local',access:'free',lean:'C',rss:'https://www.thebaltimorebanner.com/rss/',site:'https://www.thebaltimorebanner.com',standards:'https://www.thebaltimorebanner.com/about/ethics-policy/',desc:'Nonprofit Baltimore.',region:'MD'},
+{id:'dcist',name:'DCist',category:'local',access:'free',lean:'C',rss:'https://dcist.com/feed/',site:'https://dcist.com',standards:'https://dcist.com/about/',desc:'WAMU/NPR DC-area.',region:'DC'},
+{id:'wapo-local',name:'WaPo \u2014 Local',category:'local',access:'sub',lean:'L',rss:'https://feeds.washingtonpost.com/rss/local',site:'https://www.washingtonpost.com/local/',standards:'https://www.washingtonpost.com/policies-and-standards/',desc:'Your sub \u2014 DMV.',region:'DMV'},
+{id:'wtop',name:'WTOP',category:'local',access:'free',lean:'C',rss:'https://wtop.com/feed/',site:'https://wtop.com',standards:'https://wtop.com/about/',desc:'DC-area all-news radio.',region:'DMV'},
+{id:'balt-sun',name:'Baltimore Sun',category:'local',access:'sub',lean:'C',rss:'https://www.baltimoresun.com/arcio/rss/category/maryland/',site:'https://www.baltimoresun.com',standards:'https://www.baltimoresun.com/about/',desc:'Maryland news.',region:'MD'}
 ];
 
-var allStories=[],activeFilter='all',activeStateFilter=null,diagResults={},loadedCount=0,totalFeeds=FEEDS.length;
+var allStories=[],activeFilter='all',diagResults={},loadedCount=0,totalFeeds=FEEDS.length;
 document.getElementById('dateStr').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
 
-// ── NAV ──
+// Nav
 document.getElementById('navBar').addEventListener('click',function(e){
-  if(e.target.tagName==='A'&&e.target.dataset.filter){e.preventDefault();activeFilter=e.target.dataset.filter;activeStateFilter=null;
+  if(e.target.tagName==='A'&&e.target.dataset.filter){e.preventDefault();activeFilter=e.target.dataset.filter;
   document.querySelectorAll('nav.section-nav a').forEach(function(a){a.classList.remove('active')});
   e.target.classList.add('active');if(allStories.length>0)renderContent()}
 });
 
-// ── SOURCES PANEL ──
+// Sources panel
 (function(){document.getElementById('sourcesGrid').innerHTML=FEEDS.map(function(f){
   var tc=f.access==='free'?'free':f.access==='sub'?'sub':'acad';
   var tl=f.access==='free'?'Free':f.access==='sub'?'Your Sub':'Academic';
   var ll={'L':'Liberal','R':'Conservative','C':'Center','Li':'Libertarian'}[f.lean]||'';
-  return'<div class="source-card"><span class="region-tag">'+esc(f.region||'')+'</span><div class="name">'+esc(f.name)+'</div><div class="tags"><span class="access-tag '+tc+'">'+tl+'</span>'+(ll?'<span class="access-tag" style="background:rgba(120,120,120,0.1);color:rgba(244,237,224,0.5)">'+ll+'</span>':'')+'</div><div class="desc">'+esc(f.desc)+'</div><div class="links"><a href="'+(f.site||'')+'" target="_blank" rel="noopener">Visit</a></div></div>'
+  return'<div class="source-card"><span class="region-tag">'+esc(f.region||'')+'</span><div class="name">'+esc(f.name)+'</div><div class="tags"><span class="access-tag '+tc+'">'+tl+'</span>'+(ll?'<span class="access-tag" style="background:rgba(120,120,120,0.1);color:rgba(244,237,224,0.5)">'+ll+'</span>':'')+'</div><div class="desc">'+esc(f.desc)+'</div><div class="links"><a href="'+(f.site||'')+'" target="_blank" rel="noopener">Visit</a>'+(f.standards?'<a href="'+f.standards+'" target="_blank" rel="noopener">Standards</a>':'')+'</div></div>'
 }).join('')})();
+
+function updateDiag(){document.getElementById('diagLines').innerHTML=FEEDS.map(function(f){
+  var r=diagResults[f.id],l=f.name;
+  if(!r)return'<div class="diag-line"><span class="diag-dot wait"></span>'+l+'</div>';
+  if(r.ok)return'<div class="diag-line"><span class="diag-dot ok"></span>'+l+' \u2014 '+r.count+' via '+r.method+'</div>';
+  return'<div class="diag-line"><span class="diag-dot fail"></span>'+l+' \u2014 '+r.error+'</div>'
+}).join('')}
+
+function updateProgress(){
+  var pct=Math.round((loadedCount/totalFeeds)*100);
+  var el=document.getElementById('loadProgress');
+  if(el)el.textContent=loadedCount+'/'+totalFeeds+' feeds \u2014 '+pct+'%';
+}
 
 // ── UTILS ──
 function clean(t){if(!t)return'';return t.replace(/<[^>]*>/g,'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim()}
@@ -373,7 +407,7 @@ function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;
 function imgTag(u,l){if(u)return'<img src="'+esc(u)+'" alt="" loading="'+(l?'lazy':'eager')+'" onerror="this.parentElement.innerHTML=\'<div class=img-placeholder>The Dispatch</div>\'">';return'<div class="img-placeholder">The Dispatch</div>'}
 function badge(a){if(a==='sub')return'<span class="sub-badge">Sub</span>';if(a==='acad')return'<span class="acad-badge">Academic</span>';return'<span class="free-badge">Free</span>'}
 function leanBadge(l){var labels={'L':'Left','R':'Right','C':'Center','Li':'Libert.'};return'<span class="lean-badge lean-'+l+'">'+(labels[l]||l)+'</span>'}
-function catLabel(c){return{world:'World',us:'U.S.',state:'State',local:'Local',space:'Space',ai:'AI',sci:'Sci',tech:'Tech',dig:'Dig',lab:'Lab'}[c]||'News'}
+function catLabel(c){return{world:'World',us:'U.S.',state:'State',local:'Local',space:'Space',ai:'AI',dig:'Dig'}[c]||'News'}
 function srcName(s){return s.split('\u2014')[0].trim()}
 
 // ── PARSING ──
@@ -384,7 +418,7 @@ var tE=it.querySelector('title'),lE=it.querySelector('link'),dE=it.querySelector
 pE=it.querySelector('pubDate')||it.querySelector('published')||it.querySelector('updated');
 var title=tE?clean(tE.textContent):'';if(!title)return;
 var link=lE?(lE.textContent||lE.getAttribute('href')||''):'';
-var desc=dE?clean(dE.textContent):'';if(desc.length>400)desc=desc.substring(0,397)+'...';
+var desc=dE?clean(dE.textContent):'';if(desc.length>240)desc=desc.substring(0,237)+'...';
 var pd=pE?new Date(pE.textContent):new Date();if(isNaN(pd))pd=new Date();
 var th=null;var mE=it.querySelector('thumbnail')||it.querySelector('content[url]');if(mE)th=mE.getAttribute('url');
 if(!th){var enc=it.querySelector('enclosure');if(enc&&(enc.getAttribute('type')||'').indexOf('image')>=0)th=enc.getAttribute('url')}
@@ -393,119 +427,147 @@ o.push({title:title,description:desc,link:link,pubDate:pd,thumbnail:th,source:f.
 });return o}
 
 function parseRss2Json(d,f){if(!d||d.status!=='ok'||!d.items||!d.items.length)throw'empty';
-return d.items.slice(0,15).map(function(it){var t=clean(it.title),desc=clean(it.description||it.content||'');if(desc.length>400)desc=desc.substring(0,397)+'...';
+return d.items.slice(0,15).map(function(it){var t=clean(it.title),desc=clean(it.description||it.content||'');if(desc.length>240)desc=desc.substring(0,237)+'...';
 var th=it.thumbnail||(it.enclosure?it.enclosure.link:null);if(!th){var m=(it.description||it.content||'').match(/<img[^>]+src=["']([^"']+)["']/i);if(m)th=m[1]}
 return{title:t||'Untitled',description:desc,link:it.link,pubDate:new Date(it.pubDate),thumbnail:th,source:f.name,category:f.category,access:f.access,lean:f.lean,feedId:f.id,region:f.region||''}})}
 
-// ── HEALTH TRACKING ──
-var RSS2JSON_KEY='nxfkad5fwnvub6ivzpmcn0rvgsyn0koqcu5emug2';
-var RSS2JSON_BUDGET=24;
-var rss2jsonUsed=0;
+// ── SMART FEED SCHEDULER ──
+// Uses localStorage to track: last rss2json fetch time per feed, fail counts, and rotation cursor
+var RSS2JSON_KEY = 'nxfkad5fwnvub6ivzpmcn0rvgsyn0koqcu5emug2';
+var RSS2JSON_BUDGET = 64; // stay under 25/hour
+var rss2jsonUsed = 0;
 
-function getHealth(){try{return JSON.parse(localStorage.getItem('dispatch_health')||'{}');}catch(e){return{};}}
-function saveHealth(h){try{localStorage.setItem('dispatch_health',JSON.stringify(h));}catch(e){}}
-function getScheduler(){try{var s=JSON.parse(localStorage.getItem('dispatch_sched')||'{}');if(!s.cursor)s.cursor={};return s;}catch(e){return{cursor:{}};}}
-function saveScheduler(s){try{localStorage.setItem('dispatch_sched',JSON.stringify(s));}catch(e){}}
-
-function recordResult(feedId,ok){
-  var h=getHealth();if(!h[feedId])h[feedId]={ok:0,fail:0,lastOk:0,lastTry:0};
-  h[feedId].lastTry=Date.now();
-  if(ok){h[feedId].ok++;h[feedId].fail=0;h[feedId].lastOk=Date.now();}
-  else{h[feedId].fail++;}
-  saveHealth(h);
+function getSchedulerState() {
+    try {
+        var s = JSON.parse(localStorage.getItem('dispatch_scheduler') || '{}');
+        if (!s.feedStats) s.feedStats = {};
+        if (!s.cursor) s.cursor = {};  // per-category cursor
+        if (!s.lastRun) s.lastRun = 0;
+        return s;
+    } catch(e) { return { feedStats:{}, cursor:{}, lastRun:0 }; }
+}
+function saveSchedulerState(s) {
+    try { localStorage.setItem('dispatch_scheduler', JSON.stringify(s)); } catch(e) {}
 }
 
-// ── SMART SCHEDULER ──
-function buildRss2jsonQueue(){
-  var sched=getScheduler(),health=getHealth();
-  var cats=['world','us','state','local','space','ai','sci','tech','dig','lab'];
-  var bycat={};cats.forEach(function(c){bycat[c]=[];});
-  FEEDS.forEach(function(f,i){if(bycat[f.category])bycat[f.category].push({feed:f,index:i});});
-  var queue=[];
-  for(var round=0;round<5&&queue.length<RSS2JSON_BUDGET;round++){
-    for(var ci=0;ci<cats.length&&queue.length<RSS2JSON_BUDGET;ci++){
-      var cat=cats[ci],feeds=bycat[cat];if(!feeds.length)continue;
-      var cursor=(sched.cursor[cat]||0)+round;
-      var entry=feeds[cursor%feeds.length];
-      if(queue.some(function(q){return q.feed.id===entry.feed.id}))continue;
-      var st=health[entry.feed.id];
-      if(st&&st.fail>=3){var hrs=(Date.now()-(st.lastTry||0))/3600000;if(hrs<6)continue;}
-      queue.push(entry);
-    }
-  }
-  cats.forEach(function(c){var feeds=bycat[c];if(!feeds.length)return;
-    var per=Math.min(Math.ceil(RSS2JSON_BUDGET/cats.length),feeds.length);
-    sched.cursor[c]=((sched.cursor[c]||0)+per)%feeds.length;
-  });
-  saveScheduler(sched);
-  return queue;
-}
-
-// ── DIAGNOSTICS ──
-function updateDiag(){
-  var health=getHealth();
-  var okCount=0,failCount=0,waitCount=0,deadCount=0;
-  var cats=['world','us','state','local','space','ai','sci','tech','dig','lab'];
-  var html='';
-  cats.forEach(function(cat){
-    var feedsInCat=FEEDS.filter(function(f){return f.category===cat;});
-    if(!feedsInCat.length)return;
-    html+='<div class="diag-section"><div class="diag-section-title">'+catLabel(cat)+' ('+feedsInCat.length+')</div>';
-    feedsInCat.forEach(function(f){
-      var r=diagResults[f.id],st=health[f.id]||{ok:0,fail:0};
-      var rate=st.ok+st.fail>0?Math.round(st.ok/(st.ok+st.fail)*100):0;
-      var rateStr=' ['+rate+'% / '+st.ok+'ok '+st.fail+'fail]';
-      if(!r){waitCount++;html+='<div class="diag-line"><span class="diag-dot wait"></span>'+f.name+rateStr+'</div>';}
-      else if(r.ok){okCount++;html+='<div class="diag-line"><span class="diag-dot ok"></span>'+f.name+' \u2014 '+r.count+' via '+r.method+rateStr+'</div>';}
-      else{failCount++;if(st.fail>=3)deadCount++;html+='<div class="diag-line"><span class="diag-dot fail"></span>'+f.name+' \u2014 '+r.error+rateStr+'</div>';}
+// Build the rss2json priority list: round-robin one from each category, skip chronic failures
+function buildRss2jsonQueue() {
+    var state = getSchedulerState();
+    var cats = ['world','us','state','local','space','ai','dig','sci','tech','lab'];
+    var byCategory = {};
+    cats.forEach(function(c){ byCategory[c] = []; });
+    FEEDS.forEach(function(f, idx) {
+        if (byCategory[f.category]) byCategory[f.category].push({ feed:f, index:idx });
     });
-    html+='</div>';
-  });
-  document.getElementById('diagStats').innerHTML='<div class="diag-stats"><div class="diag-stat"><span class="num h-ok">'+okCount+'</span><span class="lbl">Active</span></div><div class="diag-stat"><span class="num h-wait">'+waitCount+'</span><span class="lbl">Waiting</span></div><div class="diag-stat"><span class="num h-fail">'+failCount+'</span><span class="lbl">Failed</span></div><div class="diag-stat"><span class="num h-fail">'+deadCount+'</span><span class="lbl">Inactive</span></div><div class="diag-stat"><span class="num">'+rss2jsonUsed+'/'+RSS2JSON_BUDGET+'</span><span class="lbl">API Budget</span></div></div>';
-  document.getElementById('diagLines').innerHTML=html;
-  // Health bar on main page
-  document.getElementById('healthBar').innerHTML=totalFeeds+' sources | <span class="h-ok">'+okCount+' active</span> | <span class="h-wait">'+waitCount+' waiting</span> | <span class="h-fail">'+failCount+' failed</span>'+(deadCount?' | <span class="h-fail">'+deadCount+' inactive</span>':'');
+
+    var queue = [];
+    var maxRounds = 5; // max passes through categories
+
+    for (var round = 0; round < maxRounds && queue.length < RSS2JSON_BUDGET; round++) {
+        for (var ci = 0; ci < cats.length && queue.length < RSS2JSON_BUDGET; ci++) {
+            var cat = cats[ci];
+            var feeds = byCategory[cat];
+            if (!feeds.length) continue;
+
+            // Get cursor for this category (where we left off last time)
+            var cursor = (state.cursor[cat] || 0) + round;
+            var idx = cursor % feeds.length;
+            var entry = feeds[idx];
+
+            // Check if this feed is already in queue
+            if (queue.some(function(q){ return q.feed.id === entry.feed.id; })) continue;
+
+            // Check fail history — skip if failed 3+ times in a row
+            var stats = state.feedStats[entry.feed.id] || { fails:0, lastOk:0, lastTry:0 };
+            if (stats.fails >= 3) {
+                // Still add it every 6th hour to retry
+                var hoursSinceLastTry = (Date.now() - (stats.lastTry||0)) / 3600000;
+                if (hoursSinceLastTry < 6) continue;
+            }
+
+            queue.push(entry);
+        }
+    }
+
+    // Advance cursors for next run
+    cats.forEach(function(c) {
+        var feeds = byCategory[c];
+        if (!feeds.length) return;
+        var perRound = Math.min(Math.ceil(RSS2JSON_BUDGET / cats.length), feeds.length);
+        state.cursor[c] = ((state.cursor[c] || 0) + perRound) % feeds.length;
+    });
+    state.lastRun = Date.now();
+    saveSchedulerState(state);
+
+    return queue;
 }
 
-function updateProgress(){
-  var pct=Math.round((loadedCount/totalFeeds)*100);
-  var el=document.getElementById('loadProgress');
-  if(el)el.textContent=loadedCount+'/'+totalFeeds+' feeds \u2014 '+pct+'%';
+// Set of feed IDs that get rss2json this run
+var rss2jsonSet = {};
+
+async function fetchFeed(feed) {
+    var methods = [];
+
+    if (rss2jsonSet[feed.id] && rss2jsonUsed < RSS2JSON_BUDGET) {
+        methods.push({ name:'rss2json', url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feed.rss)+'&api_key='+RSS2JSON_KEY+'&count=15', json:true });
+    }
+    methods.push({ name:'corsproxy', url:'https://corsproxy.io/?url='+encodeURIComponent(feed.rss), json:false });
+    methods.push({ name:'allorigins', url:'https://api.allorigins.win/raw?url='+encodeURIComponent(feed.rss), json:false });
+
+    var state = getSchedulerState();
+
+    for (var i = 0; i < methods.length; i++) {
+        try {
+            var ctrl = new AbortController();
+            var to = setTimeout(function(){ ctrl.abort(); }, 6000);
+            var res = await fetch(methods[i].url, { signal: ctrl.signal });
+            clearTimeout(to);
+
+            if (res.status === 429) continue;
+            if (res.status === 403) continue;
+            if (!res.ok) continue;
+
+            var stories;
+            if (methods[i].json) {
+                var d = await res.json();
+                if (d.status === 'error') continue;
+                stories = parseRss2Json(d, feed);
+                if (methods[i].name === 'rss2json') rss2jsonUsed++;
+            } else {
+                var txt = await res.text();
+                if (!txt || txt.length < 50) continue;
+                if (txt.trim().charAt(0)==='{') {
+                    try { var j=JSON.parse(txt); if(j.contents) txt=j.contents; else if(j.status==='ok'&&j.items) { stories=parseRss2Json(j,feed); } } catch(e){}
+                }
+                if (!stories) stories = parseXml(txt, feed);
+            }
+            if (stories && stories.length > 0) {
+                // Record success
+                if (!state.feedStats[feed.id]) state.feedStats[feed.id] = {};
+                state.feedStats[feed.id].fails = 0;
+                state.feedStats[feed.id].lastOk = Date.now();
+                state.feedStats[feed.id].lastTry = Date.now();
+                saveSchedulerState(state);
+
+                diagResults[feed.id] = { ok: true, count: stories.length, method: methods[i].name };
+                updateDiag();
+                return stories;
+            }
+        } catch (e) { continue; }
+    }
+
+    // Record failure
+    if (!state.feedStats[feed.id]) state.feedStats[feed.id] = { fails:0 };
+    state.feedStats[feed.id].fails = (state.feedStats[feed.id].fails || 0) + 1;
+    state.feedStats[feed.id].lastTry = Date.now();
+    saveSchedulerState(state);
+
+    diagResults[feed.id] = { ok: false, error: 'All methods failed' };
+    updateDiag();
+    return [];
 }
 
-// ── FETCH ──
-var rss2jsonSet={};
-async function fetchFeed(feed){
-  var methods=[];
-  if(rss2jsonSet[feed.id]&&rss2jsonUsed<RSS2JSON_BUDGET){
-    methods.push({name:'rss2json',url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feed.rss)+'&api_key='+RSS2JSON_KEY+'&count=15',json:true});
-  }
-  methods.push({name:'corsproxy',url:'https://corsproxy.io/?url='+encodeURIComponent(feed.rss),json:false});
-  methods.push({name:'allorigins',url:'https://api.allorigins.win/raw?url='+encodeURIComponent(feed.rss),json:false});
-  for(var i=0;i<methods.length;i++){
-    try{
-      var ctrl=new AbortController();var to=setTimeout(function(){ctrl.abort();},6000);
-      var res=await fetch(methods[i].url,{signal:ctrl.signal});clearTimeout(to);
-      if(res.status===429||res.status===403)continue;if(!res.ok)continue;
-      var stories;
-      if(methods[i].json){var d=await res.json();if(d.status==='error')continue;stories=parseRss2Json(d,feed);if(methods[i].name==='rss2json')rss2jsonUsed++;}
-      else{var txt=await res.text();if(!txt||txt.length<50)continue;
-        if(txt.trim().charAt(0)==='{'){try{var j=JSON.parse(txt);if(j.contents)txt=j.contents;else if(j.status==='ok'&&j.items){stories=parseRss2Json(j,feed);}}catch(e){}}
-        if(!stories)stories=parseXml(txt,feed);
-      }
-      if(stories&&stories.length>0){
-        recordResult(feed.id,true);
-        diagResults[feed.id]={ok:true,count:stories.length,method:methods[i].name};
-        updateDiag();return stories;
-      }
-    }catch(e){continue;}
-  }
-  recordResult(feed.id,false);
-  diagResults[feed.id]={ok:false,error:'All methods failed'};
-  updateDiag();return [];
-}
-
-// ── READER ──
+// ── READER VIEW ──
 function openReader(idx){
   var s=allStories[idx];if(!s)return;
   var p=document.getElementById('readerPanel');
@@ -515,21 +577,25 @@ function openReader(idx){
     '<h1>'+esc(s.title)+'</h1>'+
     (s.description?'<div class="reader-dek">'+esc(s.description)+'</div>':'')+
     '<div class="reader-byline"><span class="source">'+esc(srcName(s.source))+'</span> &middot; '+timeAgo(s.pubDate)+' '+badge(s.access)+'</div>'+
-    '<div class="reader-body"><p>Click below to read the full article at '+esc(srcName(s.source))+'.</p></div>'+
-    '<a href="'+esc(s.link)+'" target="_blank" rel="noopener" class="reader-link">Read at '+esc(srcName(s.source))+' \u2192</a>';
+    '<div class="reader-body"><p>This is a headline preview. Click below to read the full article at '+esc(srcName(s.source))+'.</p>'+
+    (s.access==='sub'?'<p style="color:var(--blue);font-family:JetBrains Mono,monospace;font-size:13px">\u1F511 This article requires your '+esc(srcName(s.source))+' subscription login.</p>':'')+
+    '</div>'+
+    '<a href="'+esc(s.link)+'" target="_blank" rel="noopener" class="reader-link">Read full article at '+esc(srcName(s.source))+' \u2192</a>';
   document.getElementById('readerOverlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeReader(){document.getElementById('readerOverlay').classList.remove('open');document.body.style.overflow=''}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeReader()});
 
-// ── HEADLINES ──
+// ── HEADLINES TICKER ──
 function renderHeadlines(){
   var usa=allStories.filter(function(s){return s.category==='us'||s.category==='state'||s.category==='local'}).sort(function(a,b){return b.pubDate-a.pubDate}).slice(0,20);
   var intl=allStories.filter(function(s){return s.category==='world'}).sort(function(a,b){return b.pubDate-a.pubDate}).slice(0,20);
   var uEl=document.getElementById('hlUSA'),iEl=document.getElementById('hlIntl');
-  uEl.innerHTML='<div class="headlines-col-title">\uD83C\uDDFA\uD83C\uDDF8 U.S. Headlines</div>'+usa.map(function(s){var gi=allStories.indexOf(s);return'<div class="hl-item" onclick="openReader('+gi+')"><span class="hl-time">'+timeAgo(s.pubDate)+'</span><span class="hl-text">'+esc(s.title)+'</span><span class="hl-src">'+esc(srcName(s.source))+'</span></div>'}).join('');
-  iEl.innerHTML='<div class="headlines-col-title">\uD83C\uDF0D International Headlines</div>'+intl.map(function(s){var gi=allStories.indexOf(s);return'<div class="hl-item" onclick="openReader('+gi+')"><span class="hl-time">'+timeAgo(s.pubDate)+'</span><span class="hl-text">'+esc(s.title)+'</span><span class="hl-src">'+esc(srcName(s.source))+'</span></div>'}).join('');
+  uEl.innerHTML='<div class="headlines-col-title">\uD83C\uDDFA\uD83C\uDDF8 U.S. Headlines</div>'+
+    usa.map(function(s){var gi=allStories.indexOf(s);return'<div class="hl-item" onclick="openReader('+gi+')"><span class="hl-time">'+timeAgo(s.pubDate)+'</span><span class="hl-text">'+esc(s.title)+'</span><span class="hl-src">'+esc(srcName(s.source))+'</span></div>'}).join('');
+  iEl.innerHTML='<div class="headlines-col-title">\uD83C\uDF0D International Headlines</div>'+
+    intl.map(function(s){var gi=allStories.indexOf(s);return'<div class="hl-item" onclick="openReader('+gi+')"><span class="hl-time">'+timeAgo(s.pubDate)+'</span><span class="hl-text">'+esc(s.title)+'</span><span class="hl-src">'+esc(srcName(s.source))+'</span></div>'}).join('');
 }
 
 // ── RENDER ──
@@ -537,183 +603,83 @@ function renderContent(){
   var content=document.getElementById('content');
   var stories=allStories.slice().sort(function(a,b){return b.pubDate-a.pubDate});
   if(activeFilter!=='all'&&activeFilter!=='latest')stories=stories.filter(function(s){return s.category===activeFilter});
-
-  // State sub-filter
-  if(activeFilter==='state'&&activeStateFilter)stories=stories.filter(function(s){return s.region===activeStateFilter});
-
-  if(!stories.length){content.innerHTML='<div style="text-align:center;padding:50px"><h3 style="font-family:Fraunces,serif;color:var(--accent)">No stories yet</h3><p style="color:var(--muted);font-size:13px">Stories will appear as feeds load. Try Refresh.</p></div>';return}
-
-  // Stats
-  var allSrc={};allStories.forEach(function(s){allSrc[s.source]=1});
-  var filtSrc={};stories.forEach(function(s){filtSrc[s.source]=1});
-  if(activeFilter==='all'||activeFilter==='latest'){
-    document.getElementById('storyCount').innerHTML='<strong>'+allStories.length+'</strong> stories';
-    document.getElementById('sourceCount').textContent=Object.keys(allSrc).length;
-  }else{
-    document.getElementById('storyCount').innerHTML='<strong>'+stories.length+'</strong> of '+allStories.length+' stories';
-    document.getElementById('sourceCount').textContent=Object.keys(filtSrc).length+' of '+Object.keys(allSrc).length;
-  }
+  if(!stories.length){content.innerHTML='<div style="text-align:center;padding:50px"><h3 style="font-family:Fraunces,serif;color:var(--accent)">No stories yet</h3><p style="color:var(--muted);font-size:13px">Click Show feeds to diagnose. Try Refresh.</p></div>';return}
+  var us={};allStories.forEach(function(s){us[s.source]=1});
+  document.getElementById('storyCount').innerHTML='<strong>'+allStories.length+'</strong> stories';
+  document.getElementById('sourceCount').textContent=Object.keys(us).length;
   document.getElementById('lastUpdated').textContent='Updated '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
   renderHeadlines();
 
-  // Wire view
   if(activeFilter==='latest'){var h='<div class="section-header"><h2><span class="ornament">&sect;</span>Wire</h2><span class="meta">Newest first</span></div><div class="ticker-list" style="margin-bottom:48px">';
   stories.forEach(function(s){var gi=allStories.indexOf(s);h+='<div class="ticker-item" onclick="openReader('+gi+')" style="cursor:pointer"><span class="ticker-time">'+timeAgo(s.pubDate)+'</span><span class="ticker-headline">'+esc(s.title)+'</span><span class="ticker-source">'+esc(srcName(s.source))+'</span></div>'});
   content.innerHTML=h+'</div>';return}
 
-  // State grouped view
-  if(activeFilter==='state'&&!activeStateFilter){
-    var regions={};stories.forEach(function(s){if(!regions[s.region])regions[s.region]=[];regions[s.region].push(s);});
-    var rkeys=Object.keys(regions).sort();
-    var html='<div class="state-tags"><span class="state-tag active" onclick="activeStateFilter=null;renderContent()">All States</span>';
-    rkeys.forEach(function(r){html+='<span class="state-tag" onclick="activeStateFilter=\''+esc(r)+'\';renderContent()">'+esc(r)+'</span>';});
-    html+='</div>';
-    rkeys.forEach(function(r){
-      html+='<div class="section-header"><h2><span class="ornament">&sect;</span>'+esc(r)+'</h2><span class="meta">'+regions[r].length+' stories</span></div>';
-      html+='<div class="story-grid">';
-      regions[r].forEach(function(s){var si=allStories.indexOf(s);
-        html+='<article class="story" onclick="openReader('+si+')"><div class="img-wrap">'+imgTag(s.thumbnail,true)+'</div><span class="kicker">'+esc(s.region)+' &middot; '+esc(srcName(s.source))+'</span><h3>'+esc(s.title)+'</h3>'+(s.description?'<p class="dek">'+esc(s.description)+'</p>':'')+'<div class="byline"><span class="source">'+esc(srcName(s.source))+'</span><span>'+timeAgo(s.pubDate)+'</span>'+badge(s.access)+'</div></article>';
-      });
-      html+='</div>';
-    });
-    content.innerHTML=html;return;
-  }
-
-  // State single-state view (with back button)
-  if(activeFilter==='state'&&activeStateFilter){
-    var html='<div class="state-tags"><span class="state-tag" onclick="activeStateFilter=null;renderContent()">&larr; All States</span><span class="state-tag active">'+esc(activeStateFilter)+'</span></div>';
-  }
-
-  // Standard layout
   var lead=stories[0],secs=stories.slice(1,4),grid=stories.slice(4,16),tick=stories.slice(16,35);
-  var html2='',sn=activeFilter==='all'?'Top Stories':catLabel(activeFilter);
-  if(activeFilter==='state'&&activeStateFilter)html2=html; else html2='';
+  var html='',sn=activeFilter==='all'?'Top Stories':catLabel(activeFilter);
 
   var li=allStories.indexOf(lead);
-  html2+='<div class="lead-section"><div class="lead-story" onclick="openReader('+li+')"><div class="lead-image">'+imgTag(lead.thumbnail,false)+'</div><span class="kicker">'+catLabel(lead.category)+'</span><h2>'+esc(lead.title)+'</h2>'+(lead.description?'<p class="dek">'+esc(lead.description)+'</p>':'')+'<div class="byline"><span class="source">'+esc(srcName(lead.source))+'</span><span>'+timeAgo(lead.pubDate)+'</span>'+badge(lead.access)+leanBadge(lead.lean)+'</div></div>';
-  html2+='<div class="secondary-leads">';
-  secs.forEach(function(s){var si=allStories.indexOf(s);html2+='<div class="secondary" onclick="openReader('+si+')"><span class="kicker">'+catLabel(s.category)+'</span><h3>'+esc(s.title)+'</h3>'+(s.description?'<p class="dek">'+esc(s.description)+'</p>':'')+'<div class="byline"><span class="source">'+esc(srcName(s.source))+'</span><span>'+timeAgo(s.pubDate)+'</span>'+badge(s.access)+leanBadge(s.lean)+'</div></div>'});
-  html2+='</div></div>';
+  html+='<div class="lead-section"><div class="lead-story" onclick="openReader('+li+')"><div class="lead-image">'+imgTag(lead.thumbnail,false)+'</div><span class="kicker">'+catLabel(lead.category)+'</span><h2>'+esc(lead.title)+'</h2>'+(lead.description?'<p class="dek">'+esc(lead.description)+'</p>':'')+'<div class="byline"><span class="source">'+esc(srcName(lead.source))+'</span><span>'+timeAgo(lead.pubDate)+'</span>'+badge(lead.access)+leanBadge(lead.lean)+'</div></div>';
+  html+='<div class="secondary-leads">';
+  secs.forEach(function(s){var si=allStories.indexOf(s);html+='<div class="secondary" onclick="openReader('+si+')"><span class="kicker">'+catLabel(s.category)+'</span><h3>'+esc(s.title)+'</h3>'+(s.description?'<p class="dek">'+esc(s.description)+'</p>':'')+'<div class="byline"><span class="source">'+esc(srcName(s.source))+'</span><span>'+timeAgo(s.pubDate)+'</span>'+badge(s.access)+leanBadge(s.lean)+'</div></div>'});
+  html+='</div></div>';
 
-  if(grid.length){html2+='<div class="section-header"><h2><span class="ornament">&sect;</span>'+sn+'</h2><span class="meta">'+grid.length+' stories</span></div><div class="story-grid">';
-  grid.forEach(function(s){var si=allStories.indexOf(s);html2+='<article class="story" onclick="openReader('+si+')"><div class="img-wrap">'+imgTag(s.thumbnail,true)+'</div><span class="kicker">'+catLabel(s.category)+' &middot; '+esc(srcName(s.source))+'</span><h3>'+esc(s.title)+'</h3>'+(s.description?'<p class="dek">'+esc(s.description)+'</p>':'')+'<div class="byline"><span class="source">'+esc(srcName(s.source))+'</span><span>'+timeAgo(s.pubDate)+'</span>'+badge(s.access)+leanBadge(s.lean)+'</div></article>'});
-  html2+='</div>'}
+  if(grid.length){html+='<div class="section-header"><h2><span class="ornament">&sect;</span>'+sn+'</h2><span class="meta">'+grid.length+' stories</span></div><div class="story-grid">';
+  grid.forEach(function(s){var si=allStories.indexOf(s);html+='<article class="story" onclick="openReader('+si+')"><div class="img-wrap">'+imgTag(s.thumbnail,true)+'</div><span class="kicker">'+catLabel(s.category)+' &middot; '+esc(srcName(s.source))+'</span><h3>'+esc(s.title)+'</h3>'+(s.description?'<p class="dek">'+esc(s.description)+'</p>':'')+'<div class="byline"><span class="source">'+esc(srcName(s.source))+'</span><span>'+timeAgo(s.pubDate)+'</span>'+badge(s.access)+leanBadge(s.lean)+'</div></article>'});
+  html+='</div>'}
 
-  if(tick.length){html2+='<div class="ticker-section"><div class="ticker-label"><span class="num">More</span>From the wire</div><div class="ticker-list">';
-  tick.forEach(function(s){var si=allStories.indexOf(s);html2+='<div class="ticker-item" onclick="openReader('+si+')" style="cursor:pointer"><span class="ticker-time">'+timeAgo(s.pubDate)+'</span><span class="ticker-headline">'+esc(s.title)+'</span><span class="ticker-source">'+esc(srcName(s.source))+'</span></div>'});
-  html2+='</div></div>'}
-  content.innerHTML=html2;
-}
-
-// ── STORY CACHE (72-hour persistence) ──
-var STORY_TTL = 72 * 60 * 60 * 1000; // 72 hours in ms
-
-function loadCachedStories() {
-  try {
-    var raw = localStorage.getItem('dispatch_stories');
-    if (!raw) return [];
-    var cached = JSON.parse(raw);
-    var now = Date.now();
-    // Filter out expired stories and restore Date objects
-    return cached.filter(function(s) {
-      return (now - (s._cached || 0)) < STORY_TTL;
-    }).map(function(s) {
-      s.pubDate = new Date(s.pubDate);
-      return s;
-    });
-  } catch(e) { return []; }
-}
-
-function saveCachedStories(stories) {
-  try {
-    var now = Date.now();
-    // Add cache timestamp to new stories that don't have one
-    var toSave = stories.map(function(s) {
-      if (!s._cached) s._cached = now;
-      return s;
-    });
-    // Prune expired before saving
-    toSave = toSave.filter(function(s) {
-      return (now - s._cached) < STORY_TTL;
-    });
-    localStorage.setItem('dispatch_stories', JSON.stringify(toSave));
-  } catch(e) {
-    // localStorage full — trim oldest stories and retry
-    try {
-      var trimmed = stories.sort(function(a,b){ return (b._cached||0)-(a._cached||0); }).slice(0, Math.floor(stories.length * 0.7));
-      localStorage.setItem('dispatch_stories', JSON.stringify(trimmed));
-    } catch(e2) {}
-  }
+  if(tick.length){html+='<div class="ticker-section"><div class="ticker-label"><span class="num">More</span>From the wire</div><div class="ticker-list">';
+  tick.forEach(function(s){var si=allStories.indexOf(s);html+='<div class="ticker-item" onclick="openReader('+si+')" style="cursor:pointer"><span class="ticker-time">'+timeAgo(s.pubDate)+'</span><span class="ticker-headline">'+esc(s.title)+'</span><span class="ticker-source">'+esc(srcName(s.source))+'</span></div>'});
+  html+='</div></div>'}
+  content.innerHTML=html;
 }
 
 // ── LOAD ──
-async function loadAllFeeds(){
-  var btn=document.getElementById('refreshBtn');
-  btn.disabled=true;btn.innerHTML='&#8635; Loading\u2026';
-  diagResults={};loadedCount=0;rss2jsonUsed=0;totalFeeds=FEEDS.length;
-  updateDiag();
-  document.getElementById('content').innerHTML='<div class="loading-state"><div class="loading-spinner"></div>Fetching from verified sources\u2026<br><span id="loadProgress" style="font-size:13px;color:var(--accent);font-family:JetBrains Mono,monospace">0/'+totalFeeds+' feeds \u2014 0%</span></div>';
+async function loadAllFeeds() {
+    var btn = document.getElementById('refreshBtn');
+    btn.disabled = true;
+    btn.innerHTML = '&#8635; Loading\u2026';
+    diagResults = {};
+    loadedCount = 0;
+    rss2jsonUsed = 0;
+    totalFeeds = FEEDS.length;
+    updateDiag();
+    document.getElementById('content').innerHTML = '<div class="loading-state"><div class="loading-spinner"></div>Fetching from verified sources\u2026<br><span id="loadProgress" style="font-size:13px;color:var(--accent);font-family:JetBrains Mono,monospace">0/'+totalFeeds+' feeds \u2014 0%</span></div>';
+    allStories = [];
 
-  // Load cached stories first so page isn't empty
-  allStories = loadCachedStories();
-  if (allStories.length) renderContent();
+    // Build the rss2json priority queue (24 feeds, round-robin by category)
+    var queue = buildRss2jsonQueue();
+    rss2jsonSet = {};
+    queue.forEach(function(q){ rss2jsonSet[q.feed.id] = true; });
 
-  // Build rss2json queue
-  var queue=buildRss2jsonQueue();
-  rss2jsonSet={};queue.forEach(function(q){rss2jsonSet[q.feed.id]=true;});
-
-  // Fetch fresh stories
-  var freshStories = [];
-  for(var i=0;i<FEEDS.length;i++){
-    try{
-      var stories=await fetchFeed(FEEDS[i]);
-      loadedCount++;updateProgress();
-      if(stories.length){
-        freshStories = freshStories.concat(stories);
-        allStories=dedup(allStories.concat(stories));
-        if(i%5===4)renderContent();
-      }
-    }catch(e){loadedCount++;updateProgress();}
-    if(i<FEEDS.length-1)await new Promise(function(r){setTimeout(r,400);});
-    if(rss2jsonUsed>=RSS2JSON_BUDGET&&i===Math.floor(FEEDS.length/2)){
-      await new Promise(function(r){setTimeout(r,5000);});
-      var queue2=buildRss2jsonQueue();
-      queue2.forEach(function(q){rss2jsonSet[q.feed.id]=true;});
-      rss2jsonUsed=0;
+    for (var i = 0; i < FEEDS.length; i++) {
+        try {
+            var stories = await fetchFeed(FEEDS[i]);
+            loadedCount++;
+            updateProgress();
+            if (stories.length) {
+                allStories = dedup(allStories.concat(stories));
+                if (i % 5 === 4) renderContent();
+            }
+        } catch(e) {
+            loadedCount++;
+            updateProgress();
+        }
+        // 400ms between feeds
+        if (i < FEEDS.length - 1) {
+            await new Promise(function(r){ setTimeout(r, 400); });
+        }
     }
-  }
 
-  allStories=dedup(allStories);
-  // Timestamp fresh stories and save everything
-  var now = Date.now();
-  freshStories.forEach(function(s){ s._cached = now; });
-  saveCachedStories(allStories);
-
-  renderContent();
-  btn.disabled=false;btn.innerHTML='&#8635; Refresh';
-  if(!allStories.length){
-    document.getElementById('diagPanel').classList.add('show');
-    document.getElementById('content').innerHTML='<div class="loading-state">No feeds loaded. Open the diagnostic panel below.</div>';
-  }
+    allStories = dedup(allStories);
+    renderContent();
+    btn.disabled = false;
+    btn.innerHTML = '&#8635; Refresh';
+    if (!allStories.length) {
+        document.getElementById('diagPanel').classList.add('show');
+        document.getElementById('content').innerHTML = '<div class="loading-state">No feeds loaded. Open the diagnostic panel below.</div>';
+    }
 }
 
-// ── AUTO-REFRESH ──
-var REFRESH_INTERVAL=30; // minutes
-var refreshCountdown=REFRESH_INTERVAL*60;
-var countdownTimer=null;
-function startRefreshTimer(){
-  refreshCountdown=REFRESH_INTERVAL*60;
-  if(countdownTimer)clearInterval(countdownTimer);
-  countdownTimer=setInterval(function(){
-    refreshCountdown--;
-    var m=Math.floor(refreshCountdown/60);var s=refreshCountdown%60;
-    var el=document.getElementById('nextRefresh');
-    if(el)el.textContent='Next: '+m+'m '+(s<10?'0':'')+s+'s';
-    if(refreshCountdown<=0){clearInterval(countdownTimer);loadAllFeeds().then(startRefreshTimer);}
-  },1000);
-}
-var _origLoad=loadAllFeeds;
-loadAllFeeds=async function(){await _origLoad();startRefreshTimer();};
 loadAllFeeds();
 </script>
 </body>

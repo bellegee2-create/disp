@@ -296,9 +296,9 @@ var FEEDS=[
 // ── AI ──
 {id:'mit-ai',name:'MIT \u2014 AI',category:'ai',access:'acad',lean:'C',rss:'https://news.mit.edu/rss/topic/artificial-intelligence2',site:'https://news.mit.edu/topic/artificial-intelligence2',standards:'https://news.mit.edu/about',desc:'MIT AI research.',region:'MIT'},
 {id:'deepmind',name:'Google DeepMind',category:'ai',access:'acad',lean:'C',rss:'https://deepmind.google/blog/rss.xml',site:'https://deepmind.google/blog/',standards:'https://deepmind.google/about/',desc:'DeepMind research.',region:'DeepMind'},
-{id:'openai',name:'OpenAI',category:'ai',access:'free',lean:'C',rss:'https://openai.com/blog/rss/',site:'https://openai.com/blog',standards:'https://openai.com/charter/',desc:'OpenAI blog.',region:'OpenAI'},
+{id:'openai',name:'OpenAI',category:'ai',access:'free',lean:'C',rss:'https://openai.com/news/rss.xml',site:'https://openai.com/news',standards:'https://openai.com/charter/',desc:'OpenAI blog.',region:'OpenAI'},
 {id:'phys-ai',name:'Phys.org \u2014 AI',category:'ai',access:'acad',lean:'C',rss:'https://phys.org/rss-feed/machine-learning-ai/',site:'https://phys.org/machine-learning-ai/',standards:'https://phys.org/help/about-us/',desc:'Academic AI aggregator.',region:'Academic'},
-{id:'stanfordhai',name:'Stanford HAI',category:'ai',access:'acad',lean:'C',rss:'https://hai.stanford.edu/news/rss.xml',site:'https://hai.stanford.edu/news',standards:'https://hai.stanford.edu/about',desc:'Stanford Human-Centered AI.',region:'Stanford'},
+{id:'stanfordhai',name:'Stanford HAI',category:'ai',access:'acad',lean:'C',rss:'https://hai.stanford.edu/news/all/rss',site:'https://hai.stanford.edu/news',standards:'https://hai.stanford.edu/about',desc:'Stanford Human-Centered AI.',region:'Stanford'},
 {id:'theregister-ai',name:'The Register \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://www.theregister.com/software/ai_ml/headlines.atom',site:'https://www.theregister.com/software/ai_ml/',standards:'https://www.theregister.com/about/',desc:'Tech press AI coverage.',region:'Tech'},
 {id:'techcrunch-ai',name:'TechCrunch \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://techcrunch.com/category/artificial-intelligence/feed/',site:'https://techcrunch.com/category/artificial-intelligence/',standards:'https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html',desc:'Tech press AI coverage.',region:'Tech'},
 {id:'venturebeat-ai',name:'VentureBeat \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://venturebeat.com/category/ai/feed/',site:'https://venturebeat.com/category/ai/',standards:'https://venturebeat.com/about/',desc:'AI industry news.',region:'Tech'},
@@ -329,7 +329,7 @@ var FEEDS=[
 
 // ── SPACE ──
 {id:'nasa',name:'NASA',category:'space',access:'acad',lean:'C',rss:'https://www.nasa.gov/feed/',site:'https://www.nasa.gov',standards:'https://www.nasa.gov/nasa-brand-center/communications-policies/',desc:'Official NASA releases.',region:'NASA'},
-{id:'spacedotcom',name:'Space.com',category:'space',access:'free',lean:'C',rss:'https://www.space.com/feeds/all',site:'https://www.space.com',standards:'https://www.space.com/about-us',desc:'Space exploration news.',region:'Space'},
+{id:'spacedotcom',name:'Space.com',category:'space',access:'free',lean:'C',rss:'https://www.space.com/feeds.xml',site:'https://www.space.com',standards:'https://www.space.com/about-us',desc:'Space exploration news.',region:'Space'},
 {id:'spacenews',name:'SpaceNews',category:'space',access:'free',lean:'C',rss:'https://spacenews.com/feed/',site:'https://spacenews.com',standards:'https://spacenews.com/about-us/',desc:'Space industry & policy.',region:'Space'},
 {id:'phys-space',name:'Phys.org \u2014 Space',category:'space',access:'acad',lean:'C',rss:'https://phys.org/rss-feed/space-news/',site:'https://phys.org/space-news/',standards:'https://phys.org/help/about-us/',desc:'Academic aggregator.',region:'Academic'},
 {id:'mit-space',name:'MIT \u2014 Space',category:'space',access:'acad',lean:'C',rss:'https://news.mit.edu/rss/topic/space-astronomy-and-planetary-science',site:'https://news.mit.edu/topic/space-astronomy-and-planetary-science',standards:'https://news.mit.edu/about',desc:'MIT research news.',region:'MIT'},
@@ -508,18 +508,22 @@ var rss2jsonSet = {};
 async function fetchFeed(feed) {
     var methods = [];
 
-    if (rss2jsonSet[feed.id] && rss2jsonUsed < RSS2JSON_BUDGET) {
-        methods.push({ name:'rss2json', url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feed.rss)+'&api_key='+RSS2JSON_KEY+'&count=15', json:true });
-    }
+    // Tier 1 & 2: free CORS proxies (no quota cost)
     methods.push({ name:'corsproxy', url:'https://corsproxy.io/?url='+encodeURIComponent(feed.rss), json:false });
     methods.push({ name:'allorigins', url:'https://api.allorigins.win/raw?url='+encodeURIComponent(feed.rss), json:false });
+    // Tier 3: Toptal feed2json (free, converts RSS to JSON server-side)
+    methods.push({ name:'feed2json', url:'https://www.toptal.com/developers/feed2json/convert?url='+encodeURIComponent(feed.rss), json:'feed2json' });
+    // Tier 4: rss2json as universal fallback (quota-limited but reliable)
+    if (rss2jsonUsed < RSS2JSON_BUDGET) {
+        methods.push({ name:'rss2json', url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feed.rss)+'&api_key='+RSS2JSON_KEY+'&count=15', json:true });
+    }
 
     var state = getSchedulerState();
 
     for (var i = 0; i < methods.length; i++) {
         try {
             var ctrl = new AbortController();
-            var to = setTimeout(function(){ ctrl.abort(); }, 6000);
+            var to = setTimeout(function(){ ctrl.abort(); }, 8000);
             var res = await fetch(methods[i].url, { signal: ctrl.signal });
             clearTimeout(to);
 
@@ -528,7 +532,19 @@ async function fetchFeed(feed) {
             if (!res.ok) continue;
 
             var stories;
-            if (methods[i].json) {
+            if (methods[i].json === 'feed2json') {
+                // Toptal feed2json returns JSON with items[] array
+                var fj = await res.json();
+                if (fj && fj.items && fj.items.length) {
+                    stories = fj.items.slice(0,15).map(function(it){
+                        var desc = clean(it.content_text||it.content_html||it.summary||'');
+                        if(desc.length>240) desc=desc.substring(0,237)+'...';
+                        var pd = it.date_published ? new Date(it.date_published) : new Date();
+                        if(isNaN(pd)) pd=new Date();
+                        return{title:clean(it.title||'Untitled'),description:desc,link:it.url||it.id||'',pubDate:pd,thumbnail:it.image||null,source:feed.name,category:feed.category,access:feed.access,lean:feed.lean,feedId:feed.id,region:feed.region||''};
+                    });
+                } else continue;
+            } else if (methods[i].json === true) {
                 var d = await res.json();
                 if (d.status === 'error') continue;
                 stories = parseRss2Json(d, feed);

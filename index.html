@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>The Dispatch — World, U.S., Space &amp; AI News</title>
+<title>The Dispatch — World, U.S., Space, AI &amp; Music</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -220,7 +220,7 @@ footer .colophon{font-family:'Fraunces',serif;font-style:italic;font-size:13px;c
   <div class="nameplate">
     <span class="pre">Verified &amp; Balanced Sources</span>
     <h1>The Dispatch</h1>
-    <span class="post">World, U.S., Space &amp; AI &mdash; across the political spectrum</span>
+    <span class="post">World, U.S., Space, AI &amp; Music &mdash; across the political spectrum</span>
   </div>
   <div class="masthead-meta right"><strong>&#x2713; Free</strong> &middot; <strong>&#x1F511; Subs</strong> &middot; <strong>&#x1F393; Academic</strong><br>Conservative &middot; Center &middot; Liberal</div>
 </header>
@@ -234,6 +234,7 @@ footer .colophon{font-family:'Fraunces',serif;font-style:italic;font-size:13px;c
   <a data-filter="space">Space</a>
   <a data-filter="ai">AI</a>
   <a data-filter="dig">Dig</a>
+  <a data-filter="music">Music</a>
   <span class="sep">|</span>
   <a data-filter="latest">Wire</a>
   <a href="#sources-panel">Sources</a>
@@ -300,8 +301,7 @@ var FEEDS=[
 {id:'phys-ai',name:'Phys.org \u2014 AI',category:'ai',access:'acad',lean:'C',rss:'https://phys.org/rss-feed/machine-learning-ai/',site:'https://phys.org/machine-learning-ai/',standards:'https://phys.org/help/about-us/',desc:'Academic AI aggregator.',region:'Academic'},
 {id:'stanfordhai',name:'Stanford HAI',category:'ai',access:'acad',lean:'C',rss:'https://hai.stanford.edu/news/all/rss',site:'https://hai.stanford.edu/news',standards:'https://hai.stanford.edu/about',desc:'Stanford Human-Centered AI.',region:'Stanford'},
 {id:'theregister-ai',name:'The Register \u2014 AI',category:'ai',access:'free',lean:'C',rss:'https://www.theregister.com/software/ai_ml/headlines.atom',site:'https://www.theregister.com/software/ai_ml/',standards:'https://www.theregister.com/about/',desc:'Tech press AI coverage.',region:'Tech'},
-{id:'anthropic-research',name:'Anthropic Research',category:'ai',access:'acad',lean:'C',rss:'https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feed_anthropic_research.xml',site:'https://www.anthropic.com/research',standards:'https://www.anthropic.com/company',desc:'Anthropic AI safety research.',region:'Anthropic'},
-{id:'anthropic-eng',name:'Anthropic Engineering',category:'ai',access:'acad',lean:'C',rss:'https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feed_anthropic_engineering.xml',site:'https://www.anthropic.com/engineering',standards:'https://www.anthropic.com/company',desc:'Anthropic engineering blog.',region:'Anthropic'},
+{id:'anthropic-blog',name:'Anthropic Blog',category:'ai',access:'free',lean:'C',rss:'https://tim-hilde.github.io/anthropic-rss/rss.xml',site:'https://www.anthropic.com/blog',standards:'https://www.anthropic.com/company',desc:'Anthropic research & engineering blog.',region:'Anthropic'},
 {id:'huggingface',name:'Hugging Face',category:'ai',access:'free',lean:'C',rss:'https://huggingface.co/blog/feed.xml',site:'https://huggingface.co/blog',standards:'https://huggingface.co/terms-of-service',desc:'Model releases & technical posts.',region:'HF'},
 {id:'bair',name:'BAIR (Berkeley)',category:'ai',access:'acad',lean:'C',rss:'https://bair.berkeley.edu/blog/feed.xml',site:'https://bair.berkeley.edu/blog/',standards:'https://bair.berkeley.edu/blog/about/',desc:'Berkeley AI research lab.',region:'UC Berkeley'},
 {id:'google-research',name:'Google Research',category:'ai',access:'acad',lean:'C',rss:'https://research.google/blog/rss/',site:'https://research.google/blog/',standards:'https://research.google/about/',desc:'Google AI research blog.',region:'Google'},
@@ -368,7 +368,17 @@ var FEEDS=[
 {id:'dcist',name:'DCist',category:'local',access:'free',lean:'C',rss:'https://dcist.com/feed/',site:'https://dcist.com',standards:'https://dcist.com/about/',desc:'WAMU/NPR DC-area.',region:'DC'},
 {id:'wapo-local',name:'WaPo \u2014 Local',category:'local',access:'sub',lean:'L',rss:'https://feeds.washingtonpost.com/rss/local',site:'https://www.washingtonpost.com/local/',standards:'https://www.washingtonpost.com/policies-and-standards/',desc:'Your sub \u2014 DMV.',region:'DMV'},
 {id:'wtop',name:'WTOP',category:'local',access:'free',lean:'C',rss:'https://wtop.com/feed/',site:'https://wtop.com',standards:'https://wtop.com/about/',desc:'DC-area all-news radio.',region:'DMV'},
-{id:'balt-sun',name:'Baltimore Sun',category:'local',access:'sub',lean:'C',rss:'https://www.baltimoresun.com/arcio/rss/category/maryland/',site:'https://www.baltimoresun.com',standards:'https://www.baltimoresun.com/about/',desc:'Maryland news.',region:'MD'}
+{id:'balt-sun',name:'Baltimore Sun',category:'local',access:'sub',lean:'C',rss:'https://www.baltimoresun.com/arcio/rss/category/maryland/',site:'https://www.baltimoresun.com',standards:'https://www.baltimoresun.com/about/',desc:'Maryland news.',region:'MD'},
+
+// ── MUSIC ──
+{id:'bandcamp-daily',name:'Bandcamp Daily',category:'music',access:'free',lean:'C',rss:'https://daily.bandcamp.com/feed',site:'https://daily.bandcamp.com',standards:'https://daily.bandcamp.com/info',desc:'New music features, reviews & deep cuts.',region:'Music'},
+{id:'bandcamp-jazz',name:'Bandcamp — Best Jazz',category:'music',access:'free',lean:'C',rss:'https://daily.bandcamp.com/best-jazz/feed',site:'https://daily.bandcamp.com/best-jazz',standards:'https://daily.bandcamp.com/info',desc:'Jazz new releases & features.',region:'Jazz'},
+{id:'allaboutjazz',name:'All About Jazz',category:'music',access:'free',lean:'C',rss:'https://www.allaboutjazz.com/rss/',site:'https://www.allaboutjazz.com',standards:'https://www.allaboutjazz.com/about',desc:'Jazz news, reviews & interviews.',region:'Jazz'},
+{id:'aquariumdrunkard',name:'Aquarium Drunkard',category:'music',access:'free',lean:'C',rss:'https://aquariumdrunkard.com/feed/',site:'https://aquariumdrunkard.com',standards:'https://aquariumdrunkard.com/about/',desc:'Deep cuts: soul, psych, jazz, blues.',region:'Music'},
+{id:'thequietus',name:'The Quietus',category:'music',access:'free',lean:'C',rss:'https://thequietus.com/feed',site:'https://thequietus.com',standards:'https://thequietus.com/about',desc:'Eclectic: rock, jazz, experimental.',region:'Music'},
+{id:'stereogum',name:'Stereogum',category:'music',access:'free',lean:'C',rss:'https://www.stereogum.com/feed/',site:'https://www.stereogum.com',standards:'https://www.stereogum.com/about/',desc:'Rock, indie & alternative news.',region:'Music'},
+{id:'npr-music',name:'NPR Music',category:'music',access:'free',lean:'C',rss:'https://feeds.npr.org/510019/rss.xml',site:'https://www.npr.org/sections/allsongs/',standards:'https://www.npr.org/ethics/',desc:'All Songs Considered & music news.',region:'NPR'},
+{id:'consequence',name:'Consequence of Sound',category:'music',access:'free',lean:'C',rss:'https://consequence.net/feed/',site:'https://consequence.net',standards:'https://consequence.net/about/',desc:'Rock, classic rock & music news.',region:'Music'}
 ];
 
 var allStories=[],activeFilter='all',diagResults={},loadedCount=0,totalFeeds=FEEDS.length;
@@ -389,7 +399,11 @@ document.getElementById('navBar').addEventListener('click',function(e){
   return'<div class="source-card"><span class="region-tag">'+esc(f.region||'')+'</span><div class="name">'+esc(f.name)+'</div><div class="tags"><span class="access-tag '+tc+'">'+tl+'</span>'+(ll?'<span class="access-tag" style="background:rgba(120,120,120,0.1);color:rgba(244,237,224,0.5)">'+ll+'</span>':'')+'</div><div class="desc">'+esc(f.desc)+'</div><div class="links"><a href="'+(f.site||'')+'" target="_blank" rel="noopener">Visit</a>'+(f.standards?'<a href="'+f.standards+'" target="_blank" rel="noopener">Standards</a>':'')+'</div></div>'
 }).join('')})();
 
-function updateDiag(){document.getElementById('diagLines').innerHTML=FEEDS.map(function(f){
+function updateDiag(){
+  var proxyStatus = '<div style="margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(20,19,15,0.1)"><strong>Proxy Health:</strong> ' +
+    Object.keys(proxyHealth).map(function(p){ var h=proxyHealth[p]; return p+': '+(h>=PROXY_STRIKE_LIMIT?'<span style="color:var(--accent)">disabled ('+h+' fails)</span>':'<span style="color:var(--green)">active ('+h+' fails)</span>') }).join(' &middot; ') +
+    ' &middot; rss2json: '+rss2jsonUsed+'/'+RSS2JSON_BUDGET+'</div>';
+  document.getElementById('diagLines').innerHTML=proxyStatus+FEEDS.map(function(f){
   var r=diagResults[f.id],l=f.name;
   if(!r)return'<div class="diag-line"><span class="diag-dot wait"></span>'+l+'</div>';
   if(r.ok)return'<div class="diag-line"><span class="diag-dot ok"></span>'+l+' \u2014 '+r.count+' via '+r.method+'</div>';
@@ -410,7 +424,7 @@ function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;
 function imgTag(u,l){if(u)return'<img src="'+esc(u)+'" alt="" loading="'+(l?'lazy':'eager')+'" onerror="this.parentElement.innerHTML=\'<div class=img-placeholder>The Dispatch</div>\'">';return'<div class="img-placeholder">The Dispatch</div>'}
 function badge(a){if(a==='sub')return'<span class="sub-badge">Sub</span>';if(a==='acad')return'<span class="acad-badge">Academic</span>';return'<span class="free-badge">Free</span>'}
 function leanBadge(l){var labels={'L':'Left','R':'Right','C':'Center','Li':'Libert.'};return'<span class="lean-badge lean-'+l+'">'+(labels[l]||l)+'</span>'}
-function catLabel(c){return{world:'World',us:'U.S.',state:'State',local:'Local',space:'Space',ai:'AI',dig:'Dig'}[c]||'News'}
+function catLabel(c){return{world:'World',us:'U.S.',state:'State',local:'Local',space:'Space',ai:'AI',dig:'Dig',music:'Music'}[c]||'News'}
 function srcName(s){return s.split('\u2014')[0].trim()}
 
 // ── PARSING ──
@@ -437,7 +451,7 @@ return{title:t||'Untitled',description:desc,link:it.link,pubDate:new Date(it.pub
 // ── SMART FEED SCHEDULER ──
 // Uses localStorage to track: last rss2json fetch time per feed, fail counts, and rotation cursor
 var RSS2JSON_KEY = 'nxfkad5fwnvub6ivzpmcn0rvgsyn0koqcu5emug2';
-var RSS2JSON_BUDGET = 64; // stay under 25/hour
+var RSS2JSON_BUDGET = 80; // increased for music feeds
 var rss2jsonUsed = 0;
 
 function getSchedulerState() {
@@ -456,7 +470,7 @@ function saveSchedulerState(s) {
 // Build the rss2json priority list: round-robin one from each category, skip chronic failures
 function buildRss2jsonQueue() {
     var state = getSchedulerState();
-    var cats = ['world','us','state','local','space','ai','dig','sci','tech','lab'];
+    var cats = ['world','us','state','local','space','ai','dig','music'];
     var byCategory = {};
     cats.forEach(function(c){ byCategory[c] = []; });
     FEEDS.forEach(function(f, idx) {
@@ -508,35 +522,44 @@ function buildRss2jsonQueue() {
 // Set of feed IDs that get rss2json this run
 var rss2jsonSet = {};
 
+// Adaptive proxy health: disable a proxy after 3 consecutive failures this session
+var proxyHealth = { corsproxy:0, allorigins:0, feed2json:0 };
+var PROXY_STRIKE_LIMIT = 3;
+
 async function fetchFeed(feed) {
     var methods = [];
+    var enc = encodeURIComponent(feed.rss);
 
-    // Tier 1 & 2: free CORS proxies (no quota cost)
-    methods.push({ name:'corsproxy', url:'https://corsproxy.io/?url='+encodeURIComponent(feed.rss), json:false });
-    methods.push({ name:'allorigins', url:'https://api.allorigins.win/raw?url='+encodeURIComponent(feed.rss), json:false });
+    // Tier 1 & 2: free CORS proxies (skip if struck out this session)
+    if (proxyHealth.corsproxy < PROXY_STRIKE_LIMIT)
+        methods.push({ name:'corsproxy', url:'https://corsproxy.io/?url='+enc, json:false });
+    if (proxyHealth.allorigins < PROXY_STRIKE_LIMIT)
+        methods.push({ name:'allorigins', url:'https://api.allorigins.win/raw?url='+enc, json:false });
     // Tier 3: Toptal feed2json (free, converts RSS to JSON server-side)
-    methods.push({ name:'feed2json', url:'https://www.toptal.com/developers/feed2json/convert?url='+encodeURIComponent(feed.rss), json:'feed2json' });
+    if (proxyHealth.feed2json < PROXY_STRIKE_LIMIT)
+        methods.push({ name:'feed2json', url:'https://www.toptal.com/developers/feed2json/convert?url='+enc, json:'feed2json' });
     // Tier 4: rss2json as universal fallback (quota-limited but reliable)
     if (rss2jsonUsed < RSS2JSON_BUDGET) {
-        methods.push({ name:'rss2json', url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feed.rss)+'&api_key='+RSS2JSON_KEY+'&count=15', json:true });
+        methods.push({ name:'rss2json', url:'https://api.rss2json.com/v1/api.json?rss_url='+enc+'&api_key='+RSS2JSON_KEY+'&count=15', json:true });
     }
 
     var state = getSchedulerState();
+    var TIMEOUT = 5000; // reduced from 8s
 
     for (var i = 0; i < methods.length; i++) {
         try {
             var ctrl = new AbortController();
-            var to = setTimeout(function(){ ctrl.abort(); }, 8000);
+            var to = setTimeout(function(){ ctrl.abort(); }, TIMEOUT);
             var res = await fetch(methods[i].url, { signal: ctrl.signal });
             clearTimeout(to);
 
-            if (res.status === 429) continue;
-            if (res.status === 403) continue;
-            if (!res.ok) continue;
+            if (res.status === 429 || res.status === 403 || !res.ok) {
+                if (proxyHealth[methods[i].name] !== undefined) proxyHealth[methods[i].name]++;
+                continue;
+            }
 
             var stories;
             if (methods[i].json === 'feed2json') {
-                // Toptal feed2json returns JSON with items[] array
                 var fj = await res.json();
                 if (fj && fj.items && fj.items.length) {
                     stories = fj.items.slice(0,15).map(function(it){
@@ -546,7 +569,7 @@ async function fetchFeed(feed) {
                         if(isNaN(pd)) pd=new Date();
                         return{title:clean(it.title||'Untitled'),description:desc,link:it.url||it.id||'',pubDate:pd,thumbnail:it.image||null,source:feed.name,category:feed.category,access:feed.access,lean:feed.lean,feedId:feed.id,region:feed.region||''};
                     });
-                } else continue;
+                } else { if (proxyHealth.feed2json !== undefined) proxyHealth.feed2json++; continue; }
             } else if (methods[i].json === true) {
                 var d = await res.json();
                 if (d.status === 'error') continue;
@@ -554,14 +577,15 @@ async function fetchFeed(feed) {
                 if (methods[i].name === 'rss2json') rss2jsonUsed++;
             } else {
                 var txt = await res.text();
-                if (!txt || txt.length < 50) continue;
+                if (!txt || txt.length < 50) { if (proxyHealth[methods[i].name] !== undefined) proxyHealth[methods[i].name]++; continue; }
                 if (txt.trim().charAt(0)==='{') {
                     try { var j=JSON.parse(txt); if(j.contents) txt=j.contents; else if(j.status==='ok'&&j.items) { stories=parseRss2Json(j,feed); } } catch(e){}
                 }
                 if (!stories) stories = parseXml(txt, feed);
             }
             if (stories && stories.length > 0) {
-                // Record success
+                // Record success — reset proxy health on success
+                if (proxyHealth[methods[i].name] !== undefined) proxyHealth[methods[i].name] = 0;
                 if (!state.feedStats[feed.id]) state.feedStats[feed.id] = {};
                 state.feedStats[feed.id].fails = 0;
                 state.feedStats[feed.id].lastOk = Date.now();
@@ -572,7 +596,11 @@ async function fetchFeed(feed) {
                 updateDiag();
                 return stories;
             }
-        } catch (e) { continue; }
+        } catch (e) {
+            // Timeout or network error — count as proxy failure
+            if (proxyHealth[methods[i].name] !== undefined) proxyHealth[methods[i].name]++;
+            continue;
+        }
     }
 
     // Record failure
@@ -670,22 +698,22 @@ async function loadAllFeeds() {
     rss2jsonSet = {};
     queue.forEach(function(q){ rss2jsonSet[q.feed.id] = true; });
 
-    for (var i = 0; i < FEEDS.length; i++) {
-        try {
-            var stories = await fetchFeed(FEEDS[i]);
+    // Parallel batch loading: 6 feeds at a time
+    var BATCH_SIZE = 6;
+    for (var i = 0; i < FEEDS.length; i += BATCH_SIZE) {
+        var batch = FEEDS.slice(i, i + BATCH_SIZE);
+        var results = await Promise.allSettled(batch.map(function(f){ return fetchFeed(f); }));
+        results.forEach(function(r) {
             loadedCount++;
             updateProgress();
-            if (stories.length) {
-                allStories = dedup(allStories.concat(stories));
-                if (i % 5 === 4) renderContent();
+            if (r.status === 'fulfilled' && r.value.length) {
+                allStories = dedup(allStories.concat(r.value));
             }
-        } catch(e) {
-            loadedCount++;
-            updateProgress();
-        }
-        // 400ms between feeds
-        if (i < FEEDS.length - 1) {
-            await new Promise(function(r){ setTimeout(r, 400); });
+        });
+        if (allStories.length > 0) renderContent();
+        // Small pause between batches to avoid hammering proxies
+        if (i + BATCH_SIZE < FEEDS.length) {
+            await new Promise(function(r){ setTimeout(r, 300); });
         }
     }
 
